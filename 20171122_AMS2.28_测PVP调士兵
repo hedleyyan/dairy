@@ -4,3 +4,4 @@ update user_army set free=0 where armyId not in ('107309','107310');
 update user_army set free=10000 where armyId in ('107309','107310');
 
 
+test
