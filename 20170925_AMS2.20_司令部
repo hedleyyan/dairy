@@ -1,0 +1,42 @@
+AMS-11041【BUG】【客服】一个账号在大地图显示2个
+select * from worldpoint where x=1168 and (y=802 or y=803);
+
+20063376 -> 玩家主城 1168, 802;
+20067472 -> 联盟堡垒 1168, 803;
+
+select * from user_world where uid='770028936000071';
+select * from alliance_territory where pointId='20067472';
+
+
+
+select * From lognew_2017_09_21 where server=71 and aid='15431af296394073932b7eb10fa626bf' and category='alliance.createTerritory';
+-> 1506082830092: 2017-09-22 12:20:30 -> 20067472
+
+
+select * from userprofile where uid='770028936000071';
+-> regTime: 1506081868936 -> 2017-09-22 12:04:28
+grep 'AssignWorldPointHandler.*770028936000071' logs/smartfox.log.2017-09-22-1*
+-> 2017-09-22 12:07:01,060 -> 21488365 -> 745, 1150
+
+1506321851
+
+
+TODO:: 查一下玩家登陆时下发的 point
+
+
+------------------------------------------------------------------------
+
+
+远程修复联盟堡垒 - IP/zoneId/timestamp/paramsKey <- debug
+http://10.0.3.187:8080/gameservice/repairterritory?zoneId=1&timestamp=1506330602732&paramsKey=11b53d2cecf2a90ff643fc0d66d19850
+
+
+"3;7;8;23;25;27;34;36;38"
+http://hg-7.super-chameleon.com:8080/gameservice/repairterritory?zoneId=7&timestamp=1506330602732&paramsKey=11b53d2cecf2a90ff643fc0d66d19850
+
+tail -f logs/smartfox.log  | grep 'remote repair'
+
+-- 查看点信息
+select * from worldpoint as W join 
+(select w.id,w.x,w.y,a.pointId,a.allianceId,a.level from worldpoint as w join alliance_territory as a on w.id=a.pointId where a.type=14 and a.pointId is not null) as X
+ on W.x>=(X.x-6-X.level+1) and W.x<=(X.x+5+X.level-1) and W.y>=(X.y-6-X.level+1) and W.y<=(X.y+5+X.level-1);

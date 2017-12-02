@@ -1,0 +1,11 @@
+查全服世界BUFF - 
+
+redis-cli -n 9 hmget world_effect29 "1739"
+
+-- 补偿时间段特定服，购买物品玩家金币
+select uid, sum(gold)*-0.3,ceil(sum(gold)*-0.3) from (
+(select uid,server,gold,f1,f2,from_unixtime(timestamp/1000) from lognew_2017_08_29 where server in (39,45,33,43,35,38,31,29,36,34,41,18,23,8,7) and from_unixtime(timestamp/1000) between '2017-08-29 12:45:15' and '2017-08-30 03:49:46' and category in ('user.buyitembatch', 'user.buyitem')  ORDER BY 6 ASC)
+union
+(select uid,server,gold,f1,f2,from_unixtime(timestamp/1000) from lognew_2017_08_30 where server in (39,45,33,43,35,38,31,29,36,34,41,18,23,8,7) and from_unixtime(timestamp/1000) between '2017-08-29 12:45:15' and '2017-08-30 03:49:46' and category in ('user.buyitembatch', 'user.buyitem')  ORDER BY 6 ASC)
+) as A group by uid;
+------------------------------------------------------------------------

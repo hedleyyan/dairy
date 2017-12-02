@@ -1,0 +1,40 @@
+重开竞技场/时空之门
+1. 后台
+1服 10.0.3.187 --> redis-cli -p 6381 del cross_fight_act1
+6服 10.0.3.191 --> redis-cli -n 6 del cross_fight_act6
+
+2. 数据库. 1服 & 6服
+truncate time_space_door_record;
+update activity set startTime=0 where type=25;
+
+3. 重启（步骤2执行完之后尽量马上重启）
+
+
+远程连接redis -> redis-cli -h 10.0.9.191
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- 数据库批量操作 python - shell即可
+spring mvc, rmi相关
+java concurrency in practice
+- fabric  python @role
+svn 终端
+- 相关配置上传到github - tmux/sublime/eclipse/..
+- 占位符 - 用法 < 从终端接收
+
+
+SELECT toString(dataHolder.table[11].val.object) FROM OBJECTS ( SELECT OBJECTS outbounds(s) FROM OBJECTS 221168103 s  ) 
+
+
+awk 'BEGIN{FS="\n"; RS="\n\n\n\n"; ORS="\n\n\n\n"} {arr[$3,NR]=$0} END{for (i=1;i<asorti(arr,newary);i++) {print arr[newary[i]]} } ' 3146.txt
+
+
+全服推送
+（科技部，获得强大的增益）
+/home/elex/mysql/bin/mysqlbinlog --no-defaults     --start-datetime="2017-05-18 00:38:35"     --stop-datetime="2017-05-18 00:39:10" log-bin.000170
+
+
+
+awk 'BEGIN{FS="\n"; RS="\n\n#"; ORS="\n\n#"} {arr[$5,NR]=$0} END{for (i=1;i<=asorti(arr,newary);i++) {print arr[newary[i]]} } ' 5647.txt
+----
+ant -> build.xml (查一下是否有自动生成工具)

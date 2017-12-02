@@ -1,0 +1,71 @@
+博客 shell scripts
+
+--- 活动贴
+[root@hgdbglobal scripts]# cat get_acticity_post 
+#/bin/sh
+
+for id in `redis-cli -n 5 zrange apl:$1 0 -1`; do
+	echo "#" $id;
+	echo "`redis-cli -n 2 hmget p:$id u l m`"
+	echo
+	echo
+	echo
+done; 
+
+
+--- 主贴评论
+[root@hgdbglobal scripts]# cat get_blog_cl 
+#/bin/sh
+
+for id in `redis-cli -n 5 zrange cl:$1 0 -1`; do
+	echo "#" $id;
+	uid=`redis-cli -n 3 hmget c:$id u`;
+	echo "$uid";
+	echo "`redis-cli -n 4 hmget u:$uid s n l`";
+	echo "`redis-cli -n 3 hmget c:$id m `";
+	echo
+done;
+
+
+---- 点赞玩家
+[root@hgdbglobal scripts]# cat get_blog_like_uper
+#/bin/sh
+
+for uid in `redis-cli -n 5 smembers pl:$1`; do
+	echo "#" $uid
+	echo "`redis-cli -n 4 hmget u:$uid s n`";
+	echo
+done;
+
+
+---- 官方帖？
+[root@hgdbglobal scripts]# cat get_official_post
+#/bin/sh
+
+for id in `redis-cli -n 5 zrange official_post_list 0 -1`; do
+	echo "#" $id;
+	echo "`redis-cli -n 2 hmget p:$id h t l c`" | tr '\n' '#'
+	echo
+	echo
+	echo
+done; 
+
+
+
+
+------------------------------------------------------------------------
+手动置顶热帖
+zrevrange hot_post_list 0 30 withscores
+zincrby hot_post_list 1400 10629				// 热度, 帖ID
+
+手动清理热帖多余
+
+
+
+------------------------------------------------------------------------
+博客活动帖玩家数据汇总
+./get_acticity_post 2 > xxx.txt
+awk 'BEGIN{FS="\n"; RS="\n\n\n\n"; ORS="\n\n\n\n"} {arr[$3,NR]=$0} END{for (i=1;i<asorti(arr,newary);i++) {print arr[newary[i]]} │
+} ' xxx.txt				// 得到的是按评论排序（但是是字母，不是数字）
+awk 'BEGIN{FS="\n"; RS="\n\n\n\n"; ORS="\n\n\n\n"} {for(i=4;i<=NR;i++) $i=""; print}' 20170821活动玩家帖子数据.txt			// 过滤信息 - excel排序
+------------------------------------------------------------------------

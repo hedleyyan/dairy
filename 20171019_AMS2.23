@@ -1,0 +1,9 @@
+-- 查累计充值推送，附近玩家操作log
+grep -C 20 'push.user.rc.status.*742513469000035' logs/smartfox.log.2017-10-16-* | grep '35-742513469000035' | awk '{for(i=3;i<=10;i++) $i=""; $1=""; sub("\\| {\"gold.*stone\":[0-9]*}$","",$0); print substr($0,0,220)}'
+------------------------------------------------------------------------
+
+
+同一设备ID多个号切号，将account_new表的对应的gameUid的lastTime哪个大登录哪个。
+
+select * from account_new where gameUid='37922321000001'; 1508828170849;
+select * from account_new where gameUid='7723860000001';  1508827331000

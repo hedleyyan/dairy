@@ -1,0 +1,34 @@
+-- 测试服重读配置
+svn up /usr/local/cok/SFS2X/resource_hg && redis-cli -h 10.0.3.187 -p 6381 set property1_realtime_server_xml_version `date +%s`
+
+
+-- 查找所有10.0.1.88出现的地方 除去logs文件夹
+find . -type f ! -path "./logs/*"  -exec grep '10.0.1.88' {} \;
+find . -type f ! -path "./logs/*"  | xargs grep '10.0.1.88'
+
+./gameconfig/rmiClient.xml:        <property name="serviceUrl" value="rmi://10.0.1.88:1099/WorldService"/>
+./resource/servers.xml:    <ItemSpec id="2" name="[闫德礼]2" ip="10.0.1.88" port="8088" zone="ZSC2" recommend="true" hot="false" new="true" test="false" open_time="2017-10-13 06:00:00" pub_ip="10.0.1.88" inner_ip="10.0.1.88" db_ip="10.0.3.187" db_name="hgdb2"/>
+./sfs2x-service.vmoptions:-Djava.rmi.server.hostname=10.0.1.88
+
+
+➜  SFS2X sed -i 's/10.0.1.88/10.0.3.30/g' ./gameconfig/rmiClient.xml - eclipse
+➜  SFS2X sed -i 's/10.0.1.88/10.0.3.30/g' ./resource/servers.xml  	 - eclipse
+➜  SFS2X sed -i 's/10.0.1.88/10.0.3.30/g' ./sfs2x-service.vmoptions	 - 本机
+global有个tbl_db和web那两个加进去		/ tbl_webserver					 - mysql_global_db
+然后在测试服导量配置，那里点一下同步应该就可以 - 运营功能 - 导量配置
+
+
+
+
+sed -i 's/10.0.1.88/10.0.3.30/g' /Users/hedley/Documents/workspace_HG/HG/SFS2X/Debug/gameconfig/rmiClient.xml
+sed -i 's/10.0.1.88/10.0.3.30/g' /Users/hedley/Documents/workspace_HG/HG/SFS2X/resource/servers.xml
+sed -i 's/10.0.1.88/10.0.3.30/g' /Users/hedley/Elex/cok/SFS2X/sfs2x-service.vmoptions
+mysql -A -uroot -p123456 --skip-secure-auth -h10.0.3.187 hgdb_admin_deploy -e "update tbl_webserver set ip_inner='10.0.1.88',ip_pub='10.0.1.88',domain='10.0.1.88' where svr_id=2"
+http://10.0.3.187:8082/ifadmin/admin_stats/admincp.php?mod=operatingService&act=config 打开，点击发布
+
+
+sed -i 's/10.0.1.88/10.0.3.30/g' /Users/hedley/Documents/workspace_HG/HG/SFS2X/Debug/gameconfig/rmiClient.xml
+sed -i 's/10.0.1.88/10.0.3.30/g' /Users/hedley/Documents/workspace_HG/HG/SFS2X/resource/servers.xml
+sed -i 's/10.0.1.88/10.0.3.30/g' /Users/hedley/Elex/cok/SFS2X/sfs2x-service.vmoptions
+mysql -A -uroot -p123456 --skip-secure-auth -h10.0.3.190 hgdb_admin_deploy -e "update tbl_webserver set ip_inner='10.0.3.30',ip_pub='10.0.3.30',domain='10.0.3.30' where svr_id=2"
+http://10.0.3.187:8082/ifadmin/admin_stats/admincp.php?mod=operatingService&act=config 打开，点击发布

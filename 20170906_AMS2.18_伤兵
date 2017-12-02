@@ -1,0 +1,14 @@
+伤兵查看打点（协防回城时结算伤兵、联盟堡垒立即结算伤兵、联合防御协防立即结算伤兵）
+FightResultObject是伤兵战报
+worldMarch只有dead没有hurt，具体伤兵结算时armyback时逻辑处理的
+
+UserArmyManager [line: 2227] - armyBack(Map<String, Integer>, Army_Do, Map<String, Integer>, ISFSObject, long, boolean, String, Object...)	
+UserHospitalManager [line: 873] - receiveDeadFromWorldMarch(WorldMarchGeneralArmy)	
+WorldTerritoryFightHandler [line: 212] - fight()	
+UserArmyManager [entry] - armyBack(Map<String, Integer>, Army_Do, Map<String, Integer>, ISFSObject, long, boolean, String, Object...)	
+UserHospital [entry] - save(SqlSession)	
+UserHospital [entry] - update(SqlSession)	
+AbstractWorldFightHandler [line: 581] - fight()	
+AbstractWorldFightHandler [line: 1261] - handleReinforce()	
+FightResultObject [line: 173] - FightResultObject(int, int, Map<String, List<SFSObject>>, String, String, BATTLETYPE, int, List<WorldMarch>)	
+

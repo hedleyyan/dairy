@@ -1,0 +1,43 @@
+http://bbs.linuxtone.org/thread-16375-1-1.html
+http://blog.csdn.net/tuzhen007/article/details/19835193
+http://blog.csdn.net/isoleo/article/details/46461261
+http://www.cnblogs.com/nbuntu/p/5523331.html
+mysql 主从切换
+------------------------------------------------------------------------
+
+
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+http://blog.csdn.net/lmss82/article/details/4414178/
+[root@hg SFS2X]# mkdir /var/lib/mysql
+[root@hg SFS2X]# ln -s /home/mysql/mysql.sock /var/lib/mysql/mysql.sock
+
+
+Access denied for user 'root'@'localhost' (using password: YES) - 无密码登录
+http://blog.csdn.net/u010235716/article/details/50393941
+
+
+Host '10.0.1.88' is not allowed to connect to this MySQL server - 远程无法登录
+本机登录，执行
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+------------------------------------------------------------------------
+
+
+excel
+VLOOKUP
+http://www.360doc.com/content/13/0916/18/7761973_314883874.shtml
+vlookup #n/a f9显示
+http://www.exceltip.net/thread-54841-1-1.html
+------------------------------------------------------------------------
+
+
+
+王国宝藏
+grep 'Athena2AwardHandler.*1591357101000060' logs/smartfox.log.2017-08-23-12
+grep 'init.*1591357101000060' logs/smartfox.log.2017-08-23-09 | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"throne_treasure2":).+]},)/g'
+------------------------------------------------------------------------
+
+
+
+F5 | 分割
+select position('|' in f5) from lognew_2017_08_23 where category='hero.Rank.levelupeathero' limit  10;
+select  f5,substring_index(f5,'|',2),substring_index(substring_index(f5,'|',2),'|',-1) from lognew_2017_08_23 where category='hero.Rank.levelupeathero' limit  10;

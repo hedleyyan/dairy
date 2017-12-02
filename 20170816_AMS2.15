@@ -1,0 +1,34 @@
+发现一个 Coding Standard 的 wiki，里面的 Rules 每一个都挺不错的，Java 里包括大部分 Effective Java， Java Concurrency in Practice .. 大部分 Idioms / Tips & Tricks 的总结。代码示例清楚简洁，注释说明不拖泥带水
+https://www.securecoding.cert.org/confluence/display/java/2+Rules
+
+也有 C++/Andiord 的，不知对前端的同学有没有帮助
+https://www.securecoding.cert.org/confluence/display/cplusplus/2+Rules
+------------------------------------------------------------------------
+
+
+-- 建筑状态是升级(op_type=1)，但升级队列没有
+select A.*,B.* from user_building as A left join queue as B on A.uid=B.ownerId and A.uuid=B.itemId where B.itemId is null and A.opType=1;
+------------------------------------------------------------------------
+
+
+王晓旭 14:39
+
+创建新服务器:
+1. 更新HGServerList.xlsx，导出serverinfo.json
+2. 替换HGServerTools工程中的serverinfo.json
+http://svn.super-chameleon.com:8822/svn/hg/10.MVP-A/Source/trunk/Server/HGServerTools
+
+3. 187测试服上:
+编译并更新项目:
+/root/bw_hg/deploy_hgservertool.sh
+
+运行
+/root/bw_hg/HGServerTools/HGServerTools/createserver.sh
+
+4.根据提示，进行部署
+更新serverinfo.json
+fab -f deploy_global_together_new.py df:v=
+fab -f deploy_global_together_new.py do:v=,s="64-70"
+
+
+

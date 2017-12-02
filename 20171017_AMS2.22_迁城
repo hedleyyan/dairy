@@ -1,0 +1,19 @@
+-- 迁城失败log查询
+grep 'des point mysql info' logs/smartfox.log.2017-10-16-22
+grep 'POINT CAN NOT MOVE CITY' logs/smartfox.log.2017-10-16-22
+
+
+------------------------------------------------------------------------
+@所有人 10月2日 线上DB master当机快速切换至slave时使用了HGServerTools工具
+把使用方法介绍给大家。
+HGServerTools svn路径:
+http://svn.super-chameleon.com:8822/svn/hg/10.MVP-A/Source/trunk/Server/HGServerTools
+
+这个tool内可以包含java,python,shell多种语言编写的工具
+由java作为接口进行调用。输入输出为命令行模式。
+欢迎大家向这个工具集添加内容。
+
+
+-----
+33服
+select * from user_building where uid='1031433814000033';

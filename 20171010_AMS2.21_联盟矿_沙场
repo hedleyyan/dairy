@@ -1,0 +1,18 @@
+-- 测试大地图联盟资源矿显示 -1 修复
+select x,y,pointType,a.resType from worldpoint w,alliance_territory a where w.id=a.pointId and a.type=18;
+
+=== 在停服时执行下面sql
+update worldpoint w,alliance_territory a set w.pointType=0 where w.id=a.pointId and a.type=18;
+
+select id from alliance_territory al inner join worldpoint wp on al.pointId = wp.id where al.type != wp.pointType;
+------------------------------------------------------------------------
+
+
+
+-- 沙场争霸排名问题查看
+redis-cli -> select X
+lrange sand_arena_score_ranking 0 -1
+hmget self_sand_arena_score_ranking $uid
+
+smartfox->
+grep 'personal reward' logs/smartfox.log.2017-10-08-23

@@ -1,0 +1,38 @@
+天梯
+
+疑问：
+1. 入场和配兵，先入场再配兵还是？
+2. 段位的排名 & 发奖
+3. 奖池逻辑
+4. 获胜积分逻辑
+5. 段位领奖逻辑
+6. 邮件
+
+剩余：
+1. item 配置
+2. 邮件多语言
+3. 异常码
+4. log
+5. 算法
+6.
+
+
+
+天梯排期重启imte
+
+redis-cli -p 6381 -n 0 keys "LADD*" | xargs redis-cli -p 6381 -n 0 del 
+truncate table ladder_activity;
+
+
+---- 
+查大本等级
+grep 'init.*35999108000001.*"itemId":"400000"' logs/smartfox.log.2017-09-19-0* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"building":\[)[^]]+])/g' | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:{[^{]+"itemId":"400000")[^}]+})/g'
+
+logs/smartfox.log.2017-09-19-02:2017-09-19 02:49:00,578 	|	 1-35999108000001 	|	{"opType":0,"para1":"7100;11000","para2":"0","para3":"404000;424000","para4":"239100","uuid":"03e5ddf8219844f2b3403afa603094e7","para5":"0;0;0;0","building":"419000;3","para6":"0","pos":0,"sub_type":0,"destroy_time":1200,"star_building":"","wood":2500,"power":147,"exp":804,"unpack_time":10,"pack_time":0,"level":3,"resource":0,"putId":"","food":0,"stone":0,"nextLevelParas":"9300;11000,0,425000;411000,239100,0;0;0;0,0","itemId":"400000","iron":0,"silver":0,"time":2400,"starNum":0,"starRate":0}
+logs/smartfox.log.2017-09-19-02:2017-09-19 02:50:45,526 	|	 1-35999108000001 	|	{"opType":0,"para1":"43400;11000","para2":"0","para3":"0","para4":"239100","uuid":"03e5ddf8219844f2b3403afa603094e7","para5":"64800;900;3600;64800","building":"419000;21|426000;21","para6":"0","pos":0,"sub_type":0,"destroy_time":384007,"star_building":"","wood":11200000,"power":66933,"exp":110402,"unpack_time":10,"pack_time":0,"level":21,"resource":0,"putId":"","food":11200000,"stone":67000,"nextLevelParas":"46200;11000,0,0,239100,64800;900;3600;64800,0","itemId":"400000","iron":1070000,"silver":0,"time":1692600,"starNum":0,"starRate":0}
+
+
+
+--- 
+查世界坐标点，-> point
+grep 'init.*18-478707162000021' logs/smartfox.log.2017-09-09-1* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"world":{)[^}]+})/g'

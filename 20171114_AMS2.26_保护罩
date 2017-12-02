@@ -1,0 +1,20 @@
+-- 使用保护罩道具失效
+grep 'UseItem.*321841036000047.*E40032' logs/smartfox.log.2017-11-11-*
+grep 'UseItem.*321841036000047.*200410' logs/smartfox.log.2017-11-11-*
+grep 'UserWorld return home error, march not isReturnHome. uid:445555756000007' logs/smartfox.log.2017-11-19-*
+grep 'user: 321841036000047, login march' logs/smartfox.log.2017-11-11-*
+
+egrep 'UseItem.*1342426472000056.*(E40032|200410)' logs/smartfox.log.2017-11-04-00
+
+-- 查使用保护罩记录
+select * from lognew_2017_11_18 where uid='987957453000054' and category='user.addStatus' ; f1='' status.xml -> 61;1
+
+
+账号信息
+
+测试1服
+deviceId: hedley-2
+select * from mail where toUser='34566277000001';
+
+
+

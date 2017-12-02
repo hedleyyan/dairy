@@ -1,0 +1,32 @@
+星期一，晴
+周末井冈山，老门框KTV，透
+------------------------------------------------------------------------
+
+hg_remote. 47
+
+grep 'BadCollectResMarch log' logs/smartfox.log.2017-08-18-03 
+grep '034be572de7049d2999db8e4234ea149' logs/smartfox.log.2017-08-18-* | grep -v 'init'
+
+
+2017-08-18 02:11:00,337 | INFO  | ZSC51-com.smartfoxserver.v2.controllers.ExtensionController-70 | com.elex.cok.user | ZSC51 | PUSH | push.world.march | 51-495870115000051 | {"st":1503022260331,"tType":3,"color":177036036,"mt":55000,"stealthEndTime":0,"territoryStartTime":0,"territoryStat":0,"hero":["e8bb27ae3bac454e80662d2f9a985fcb","311f29584d8d456182e1a398b79bffe0"],"extraParam":0,"dp":20631743,"uuid":"034be572de7049d2999db8e4234ea149","oType":0,"o":"Sarge0c1b351","mType":0,"et":1503022315331,"allianceId":"065061c2968447249055c450a18eaf93","army":[{"total":410,"dead":0,"armId":2},{"total":410,"dead":0,"armId":0},{"total":410,"dead":0,"armId":3}],"sType":0,"ouid":"495870115000051","territoryUpdateTime":0,"slowDown":false,"sp":20644028,"asn":"GS1"}
+2017-08-18 02:11:55,433 | INFO  | ZSC51-thread-world_march_pool-12 | com.elex.cok.puredb.model.WorldMarch | ZSC51 | remainCollectTime: 034be572de7049d2999db8e4234ea149 : 3883861
+##### 1503022315433 + 3883861 = 1503026199294 = 2017-08-18 03:16:39
+
+
+2017-08-18 03:10:44,085 | INFO  | MarchJoinSchedule-9 | com.elex.cok.puredb.model.WorldMarch | ZSC51 | remainCollectTime: 034be572de7049d2999db8e4234ea149 : 355209
+##### 1503025844085 + 355209 = 1503026199294 = 2017-08-18 03:16:39
+
+
+
+java.lang.Exception: BadCollectResMarch log. uid:495870115000051, alreadyCollectedTime:4845754, collectedTime:3883963
+##### 1503027161085 - 4845754 = 1503022315331 = 2017-08-18 02:11:55
+
+
+2017-08-18 03:32:41,085 | ERROR | ZSC51-thread-login_logout_thread-21 | com.elex.cok.puredb.model.WorldMarch | ZSC51 | BadCollectResMarch log. {"st":0,"tType":3,"color":0,"plunderRes":"[]","mt":55000,"stealthEndTime":0,"territoryStartTime":0,"territoryStat":0,"hero":["e8bb27ae3bac454e80662d2f9a985fcb","311f29584d8d456182e1a398b79bffe0"],"extraParam":0,"dp":20631743,"uuid":"034be572de7049d2999db8e4234ea149","o":"Sarge0c1b351","mType":0,"et":0,"allianceId":"065061c2968447249055c450a18eaf93","army":[{"total":410,"dead":0,"armId":2},{"total":410,"dead":0,"armId":0},{"total":410,"dead":0,"armId":3}],"sType":1,"ouid":"495870115000051","territoryUpdateTime":0,"slowDown":false,"sp":20644028,"asn":"GS1"}
+##### 1503027161085
+
+
+
+2017-08-18 07:03:56,565 | INFO  | ZSC51-thread-world_march_pool-17 | com.elex.cok.puredb.model.WorldMarch | ZSC51 | occupyFuture start. 034be572de7049d2999db8e4234ea149
+##### 1503039836565
+1503039836565 - 1503025844085 = 13992480

@@ -1,0 +1,53 @@
+http://jira.super-chameleon.com:8090/browse/AMS-10574
+迁城失败
+查迁城失败时间点 -> 迁城失败前的行军记录 -> 返回行军时间
+			   -> 最近一次登录下发的行军信息 "world" -> "m"	-> 返回行军时间
+
+grep '920195121000047.*108744' logs/smartfox.log.2017-09-01-2*
+logs/smartfox.log.2017-09-01-21:2017-09-01 21:33:36,402 | INFO  | ZSC47-com.smartfoxserver.v2.controllers.ExtensionController-90 | com.elex.cok.user | ZSC47 | CMD-OUT | MoveWorldPoint | 47-920195121000047-2.16.0 | 2 | 108744 | can not move city! march type:0 target:1 | {"gold":65,"payGold":3245,"iron":263126,"wood":2110313,"silver":22000,"food":1373022,"stone":12337}
+
+
+sed -n '1,/21:33:36,402/ {/push.world.march.*47-920195121000047/p}' logs/smartfox.log.2017-09-01-21 | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"et":|"uuid":)[^,]+,)/g'
+2017-09-01 21:05:45,110 	|	 47-920195121000047 	|	"uuid":"b62dc626ab0845d79dadbea4bb7996f1",	|	"et":1504299963102,
+2017-09-01 21:06:03,161 	|	 47-920195121000047 	|	"uuid":"b62dc626ab0845d79dadbea4bb7996f1",	|	"uuid":"cfd42555c5ca4f6cb600c8b52ca81a31",	|	"et":1504299981160,
+2017-09-01 21:13:04,505 	|	 47-920195121000047 	|	"uuid":"f4132319288d4ea687cc61d85ce1f38a",	|	"et":1504300436497,
+2017-09-01 21:13:56,568 	|	 47-920195121000047 	|	"uuid":"f4132319288d4ea687cc61d85ce1f38a",	|	"et":1504300488568,
+2017-09-01 21:21:02,801 	|	 47-920195121000047 	|	"uuid":"6d48a6975b7b409687b52453d41a10e9",	|	"et":1504301160734,
+2017-09-01 21:21:15,019 	|	 47-920195121000047 	|	"uuid":"163f3edf7ce34ddeaa56c567f767d2b1",	|	"et":1504301084950,
+2017-09-01 21:24:45,218 	|	 47-920195121000047 	|	"uuid":"163f3edf7ce34ddeaa56c567f767d2b1",	|	"et":1504301295216,  -> 2017-09-01 21:28:15
+2017-09-01 21:26:00,991 	|	 47-920195121000047 	|	"uuid":"6d48a6975b7b409687b52453d41a10e9",	|	"et":1504301458988,  -> 2017-09-01 21:30:58
+
+
+
+grep 'SynchronizeCityResource.*920195121000047' logs/smartfox.log.2017-09-01-21 
+2017-09-01 21:32:55,152 | INFO  | ZSC47-com.smartfoxserver.v2.controllers.ExtensionController-2 | com.elex.cok.user | ZSC47 | CMD-IN | SynchronizeCityResource | 47-920195121000047-2.16.0 | {"uuid":"6d48a6975b7b409687b52453d41a10e9"}
+2017-09-01 21:32:55,152 | INFO  | ZSC47-com.smartfoxserver.v2.controllers.ExtensionController-96 | com.elex.cok.user | ZSC47 | CMD-IN | SynchronizeCityResource | 47-920195121000047-2.16.0 | {"uuid":"163f3edf7ce34ddeaa56c567f767d2b1"}
+2017-09-01 21:32:55,152 | INFO  | ZSC47-com.smartfoxserver.v2.controllers.ExtensionController-96 | com.elex.cok.user | ZSC47 | CMD-OUT | SynchronizeCityResource | 47-920195121000047-2.16.0 | 0 | synchronize user 920195121000047 same command common.res.syn | {"gold":65,"payGold":3245,"iron":259804,"wood":2085502,"silver":22000,"food":1371530,"stone":12128}
+2017-09-01 21:32:55,176 | INFO  | ZSC47-com.smartfoxserver.v2.controllers.ExtensionController-2 | com.elex.cok.user | ZSC47 | CMD-OUT | SynchronizeCityResource | 47-920195121000047-2.16.0 | 24 | {"gold":3310,"generals":["f4b73773503d424a865410391b988f08"],"size":459,"soldiers":[{"id":"107102","free":24174,"march":25701},{"id":"107002","free":48081,"march":0},{"id":"107007","free":800,"march":0},{"id":"107106","free":100,"march":0},{"id":"107303","free":6500,"march":0},{"id":"107203","free":8911,"march":0},{"id":"107307","free":800,"march":0},{"id":"107207","free":800,"march":0},{"id":"107107","free":800,"march":0}],"uuid":"6d48a6975b7b409687b52453d41a10e9"} | {"gold":65,"payGold":3245,"iron":263126,"wood":2110313,"silver":22000,"food":1373022,"stone":12337}
+
+
+
+------------------------------------------------------------------------
+
+
+
+GM -> 系统监控 -> 服务器状态 -> EventThreadPoolActiveCount 50 / EventThreadLargestPoolTotalsize 50
+玩家无法登录
+登录服务器，查看 jstack，搜 Event 关键字 --> 发现都在 TIMED_WAITING，堆栈都在获取 globalSession 处等待
+
+grep 'ZSC62-thread-login_logout_thread' logs/smartfox.log | awk '{for(i=3;i<=10;i++) $i=""; $1=""; sub("\\| {\"gold.*stone\":[0-9]*}$","",$0); print substr($0,0,220)}' // 看到后来的都没有 init
+
+查看代码 -> globalSession 没有 close
+------------------------------------------------------------------------
+
+
+
+大地图显示不出来资源矿 -1
+hmset world64 21484227 "{\"st\":0,\"rt\":0,\"pt\":0,\"i\":21484227,\"l\":8,\"tid\":21484225,\"ft\":0,\"o\":\"\",\"pt_resource\":0,\"t\":18,\"v\":179716735,\"tactive\":1,\"t1\":\"0\",\"taid\":\"65161920b0fe4b83a26b0ca8e6abe8e3\",\"tres\":0,\"tlv\":1,\"tabbr\":\"0aa\"}"
+添加了 tres、 tlv、 tabbr
+
+
+
+hmset world64 21484227 "{\"st\":0,\"rt\":0,\"pt\":0,\"i\":21484227,\"l\":8,\"tid\":21484225,\"ft\":0,\"o\":\"\",\"pt_resource\":0,\"t\":18,\"v\":177165079,\"tactive\":1,\"t1\":\"0\",\"taid\":\"65161920b0fe4b83a26b0ca8e6abe8e3\",\"tres\":0,\"tlv\":1,\"tabbr\":\"0aa\"}"
+
+

@@ -1,0 +1,9 @@
+https://stackoverflow.com/questions/2576443/java-memory-model-reordering-and-concurrent-locks
+http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html#volatile
+
+https://stackoverflow.com/questions/38694206/will-an-instruction-statement-which-comes-before-other-s-guaranteed-to-be-execut
+new JMM vs old JMM
+------------------------------------------------------------------------
+
+
+ant -> build.xml (查一下是否有自动生成工具)

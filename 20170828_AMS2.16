@@ -1,0 +1,121 @@
+grep 'init.*...' logs/sm... -> "herolist"... format
+
+find:
+officer": (?!0)
+------------------------------------------------------------------------
+
+
+查找从联盟矿撤军
+[root@hg11 SFS2X]# grep ' push.world.march.retreat | 26-1036505056000026.*tType":18' logs/smartfox.log.2017-08-27-*
+2017-08-27 04:26:09,367 | ExtensionController-52 | PUSH | push.world.march.retreat | 26-1036505056000026 | {"dp":19382911,"uuid":"6d71c17258164db0819d9a6b941db5f7","sp":19358330,"st":1503807969205,"plunderRes":"[ ]","mt":56000,"territoryStartTime":1503770067768,"cq":157594,"et":1503808026205,"sType":2,,"territoryUpdateTime":1504059252143}
+2017-08-27 12:31:20,833 | ExtensionController-79 | PUSH | push.world.march.retreat | 26-1036505056000026 | {"dp":19382911,"uuid":"f42b11af5740494c96e3d7b21f433fd8","sp":19358330,"st":1503837080799,"plunderRes":"[ ]","mt":56000,"territoryStartTime":1503825268605,"cq":49115,"et":1503837137799,"sType":2,,"territoryUpdateTime":1504022882819}
+2017-08-27 16:15:24,123 | ExtensionController-48 | PUSH | push.world.march.retreat | 26-1036505056000026 | {"dp":19382911,"uuid":"10d79d290b8047018e0651a0715739be","sp":19358330,"st":1503850524083,"plunderRes":"[ ]","mt":70000,"territoryStartTime":1503848472864,"cq":10728,"et":1503850597083,"sType":2,,"territoryUpdateTime":1503987956010}
+
+查该行军相关信息
+grep 'f42b11af5740494c96e3d7b21f433fd8' logs/smartfox.log.2017-08-27-* | grep -v 'Detail'
+
+
+init
+{
+	"sdt": 1503825268585,
+	"color": 177036036,
+	"tType": 18,
+	"territoryStat": 6,
+	"collected": 0,
+	"dp": 19358330,
+	"uuid": "f42b11af5740494c96e3d7b21f433fd8",
+	"oType": 0,
+	"pt_resource": 0,
+	"spdBasic": 1.649999976158142,
+	"changeCollectSpdTime": 0,
+	"slowDown": false,
+	"tali": "087a5e5157ae4b2d9ea999fdc9d7c9e7",
+	"sp": 19382911,
+	"st": 0,
+	"plunderRes": "[ ]",
+	"spd": 4.1579999923706055,
+	"mt": 56000,
+	"territoryStartTime": 1503825268605,
+	"mType": 0,
+	"et": 0,
+	"army": [{
+		"total": 136300,
+		"dead": 0,
+		"armId": 3
+	}],
+	"sType": 1,
+	"q": 306305,
+	"territoryUpdateTime": 1504033322066,
+	"tq": 8829648
+}
+
+
+前端计算采集倒计时算法： sdt + q / spd * 1000
+1503825268585 + 306305 / 4.1579999923706055 * 1000 = 1503898935011 - 2017-08-28 05:42:15
+
+
+2017-08-27 09:14:28,612 + 73666405
+1503825268612 + 73666405 = 1503898935017 - 2017-08-28 05:42:15
+
+
+
+
+{
+		"sdt": 1503848472851,
+		"color": 177036036,
+		"tType": 18,
+		"territoryStat": 6,
+		"hero": ["0b02b4ef31af475cb943460164446a36", "1b0a6c5900e54b27a8f4dc49a02e2f16", "56adf7171a8a483ab26970adcfd2bc57"],
+		"collected": 0,
+		"dp": 19358330,
+		"uuid": "10d79d290b8047018e0651a0715739be",
+		"oType": 0,
+		"airforceInfo": ["1006", "1003", "1005", "1002", "1004", "1001"],
+		"pt_resource": 0,
+		"allianceId": "087a5e5157ae4b2d9ea999fdc9d7c9e7",
+		"spdBasic": 1.649999976158142,
+		"changeCollectSpdTime": 0,
+		"slowDown": false,
+		"tali": "087a5e5157ae4b2d9ea999fdc9d7c9e7",
+		"sp": 19382911,
+		"st": 0,
+		"plunderRes": "[]",
+		"spd": 5.230499744415283,
+		"mt": 70000,
+		"stealthEndTime": 0,
+		"territoryStartTime": 1503848472864,
+		"extraParam": 0,
+		"o": "SiCepot",
+		"mType": 0,
+		"et": 0,
+		"army": [{
+			"total": 38029,
+			"dead": 0,
+			"armId": 0
+		}, {
+			"total": 45760,
+			"dead": 0,
+			"armId": 1
+		}, {
+			"total": 34730,
+			"dead": 0,
+			"armId": 3
+		}, {
+			"total": 25281,
+			"dead": 0,
+			"armId": 2
+		}],
+		"sType": 1,
+		"q": 148074,
+		"ouid": "1036505056000026",
+		"territoryUpdateTime": 1503992136580,
+		"asn": "M0D",
+		"tq": 8141870
+	}
+
+前端计算采集倒计时算法： sdt + q / spd * 1000
+1503848472851 + 148074 / 5.230499744415283 * 1000 = 1503876782574 - 2017-08-27 23:33:02
+
+2017-08-27 15:41:12,870 | INFO  | ZSC26-thread-world_march_pool-17 | com.elex.cok.puredb.model.WorldMarch | ZSC26 | remainCollectTime: 10d79d290b8047018e0651a0715739be : 28309703
+1503848472870 + 28309703 = 1503876782573 = 2017-08-27 23:33:02
+

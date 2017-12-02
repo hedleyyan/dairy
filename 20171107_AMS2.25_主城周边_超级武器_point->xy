@@ -1,0 +1,24 @@
+-- 查询主城及其周边点坐标（pointType应该为8的不为8）
+select Y.id as 主城坐标,W.id as 周边点坐标,W.pointType from worldpoint W, (select id,x,y from worldpoint where pointType=1) Y where (W.x=Y.x-1 and W.y=Y.y-1) or (W.x=Y.x-1 and W.y=Y.y) or (W.x=Y.x and W.y=Y.y-1) or (W.x=Y.x and W.y=Y.y);
+
+
+-- 查pointType不应该为8的为8
+select * from worldpoint where pointType=8 and id not in (select W.id  from worldpoint W, (select id,x,y from worldpoint where pointType=1) Y where (W.x=Y.x-1 and W.y=Y.y-1) or (W.x=Y.x-1 and W.y=Y.y) or (W.x=Y.x and W.y=Y.y-1) or (W.x=Y.x and W.y=Y.y));
+
+==
+select A.id,A.pointType,B.id from worldpoint A left join (select W.id  from worldpoint W, (select id,x,y from worldpoint where pointType=1) Y where (W.x=Y.x-1 and W.y=Y.y-1) or (W.x=Y.x-1 and W.y=Y.y) or (W.x=Y.x and W.y=Y.y-1) or (W.x=Y.x and W.y=Y.y)) as B on A.id=B.id where B.id is null and A.pointType=8;
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+查坐标 xy
+(pointId - 2^24) / 2^12 = y
+(pointId - 2^24) % 2^12 = x
+
+(pointId - 16777216) / 4096 = y
+(pointId - 16777216) % 4096 = x
+
+
+-- AMS-13516 放超级武器坐标
+grep 'CreateTerritorySuperWeapon.*pointId' logs/smartfox.log.2017-11-05-1[01] |perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:pointId":)[0-9]+,)/g' | perl -pe 's/pointId":([0-9]*),/$1/eg' | awk -F\| '{x=($3-16777216)%4096; y=int(($3-16777216)/4096) ; $3=x" "y} 1'

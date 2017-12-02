@@ -1,0 +1,25 @@
+查玩家注册 gsl 请求
+
+hg_remote_server gm
+cd /data/log/getserverlist
+
+grep '设备ID' 2017XXX.log -> 得到当时gsl请求返回的服务器ID信息，
+根据时间点到相应服务器，grep '设备ID' xxx.log -> 查看当时的请求注册信息
+
+inputToken='AU2017@123'
+------------------------------------------------------------------------
+
+
+hmget world3 21483618
+"{\"tcount\":1,\"rt\":0,\"pt\":0,\"tdefmax\":360000,\"tid\":21483618,\"ft\":0,\"pt_resource\":0,\"tstat\":4,\"tutime\":0,\"st\":0,\"tdef\":373691,\"i\":21483618,\"tname\":\"Assembly number\",\"tuid\":\"52b2ea34ae1347be8a5e9536e493e666\",\"tdirection\":\"0_o\",\"l\":0,\"o\":\"\",\"trange\":14,\"tstime\":0,\"t\":14,\"tabbr\":\"TWW\",\"v\":0,\"tactive\":1,\"tpt\":1503364848,\"t1\":\"\",\"taid\":\"2ef5c97e19ce4d63a7121ccc55edd374\",\"tlv\":2}"
+
+
+tstat : 4->3;
+tdef : 373691->360000
+
+hmset world3 21483618 "{\"tcount\":1,\"rt\":0,\"pt\":0,\"tdefmax\":360000,\"tid\":21483618,\"ft\":0,\"pt_resource\":0,\"tstat\":3,\"tutime\":0,\"st\":0,\"tdef\":360000,\"i\":21483618,\"tname\":\"Assembly number\",\"tuid\":\"52b2ea34ae1347be8a5e9536e493e666\",\"tdirection\":\"0_o\",\"l\":0,\"o\":\"\",\"trange\":14,\"tstime\":0,\"t\":14,\"tabbr\":\"TWW\",\"v\":0,\"tactive\":1,\"tpt\":1503364848,\"t1\":\"\",\"taid\":\"2ef5c97e19ce4d63a7121ccc55edd374\",\"tlv\":2}"
+------------------------------------------------------------------------
+
+
+ ssh 冲突 -> 
+ /Users/hedley/.ssh/known_hosts

@@ -1,0 +1,93 @@
+时空流浪者
+测试流程：
+
+1. 清除活动信息
+truncate npc_coming_alliance_score;
+truncate npc_coming_score;
+truncate npc_coming_score_activity;
+truncate npc_coming_score_history_alliance;
+truncate npc_coming_score_history_user;
+truncate npc_coming_score_top_reward;
+truncate user_npc_coming_score;
+truncate user_npc_coming_score_bak;
+truncate user_npc_coming_total_score;
+
+truncate sand_arena_activity;
+truncate sand_arena_score_history_alliance;
+truncate sand_arena_score_history_player;
+truncate user_sand_arena_score;
+
+
+2. 改服务器开服时间
+servers.xml -> open_time="2020-01-01 00:00:00"
+
+
+3. 重启服务器
+4. 后台改 servers.xml -> open_time="2017-11-14 00:00:00"
+5. redis-cli -> 刷新服务器
+6. 登录，观察npc活动，
+7. 升级到解锁，攻打npc，获得银币
+8. 兑换
+9. 迁服，观察
+
+
+
+
+测试流程.
+1. 到1服数据库执行
+truncate npc_coming_alliance_score;
+truncate npc_coming_score;
+truncate npc_coming_score_activity;
+truncate npc_coming_score_history_alliance;
+truncate npc_coming_score_history_user;
+truncate npc_coming_score_top_reward;
+truncate user_npc_coming_score;
+truncate user_npc_coming_score_bak;
+truncate user_npc_coming_total_score;
+truncate sand_arena_activity;
+truncate sand_arena_score_history_alliance;
+truncate sand_arena_score_history_player;
+truncate user_sand_arena_score;
+
+2. 修改 servers.xml -> 1服 open_time=想要的开服时间 (GM貌似可以)
+3. 重启服务器
+开始测试
+
+
+
+
+测试流程2. 模拟线上的开服情况
+1. 到1服执行同上sql
+2. 修改 servers.xml -> 1服 open_time="2020-01-01 00:00:00"
+3. 重启服务器
+4. GM 改开服时间，读配置
+5. 5分钟以内应该会刷出来时空流浪者
+开始测试
+
+
+
+redis-cli -p 6381 set property1_realtime_server_xml_version `date +%s`
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+查行军信息
+grep 'marchUid'| grep -v 'GetAllianceTeamList\|init\|GetMarchRecord\|GetUserAllMarchRecord'
+	->  egrep -v 'GetAllianceTeamList|init|GetMarchRecord|GetUserAllMarchRecord|push.world.march(.win)? \| [^0-9]'
+grep 'push.world.march | 43-776270219000037' 
+grep ''
+
+;
+
+
+-- 
+2017-11-18 01:35:59,784 | INFO  | ZSC81-com.smartfoxserver.v2.controllers.ExtensionController-62 | com.elex.cok.user | ZSC81 | CMD-IN | MarchWorldPoint | 81-1269432740000080-2.26.2 | {"generals":[],"marchKey":"d5aaba2aecf5e5170796526ef49c377a","heroes":["6e69929b826b4cbc9b170da8d361413e","bedb446f49f5488fbba93382e9da86b1"],"ownerFlag":1,"soldiers":{"107107":1},"type":0,"withAirplane":true,"point":20165341}
+2017-11-18 01:35:59,956 | INFO  | ZSC81-com.smartfoxserver.v2.controllers.ExtensionController-62 | com.elex.cok.user | ZSC81 | CMD-OUT | MarchWorldPoint | 81-1269432740000080-2.26.2 | 172 | {"size":16,"success":true} | {"gold":460,"payGold":37735,"iron":1712586,"wood":25474360,"silver":22000,"food":26282163,"stone":834528}
+
+
+2017-11-18 01:38:00,805 | INFO  | ZSC81-com.smartfoxserver.v2.controllers.ExtensionController-65 | com.elex.cok.user | ZSC81 | CMD-IN | MarchWorldPoint | 81-1269432740000080-2.26.2 | {"generals":[],"marchKey":"249bb0b1436e1574ec58c37f5ae8f275","heroes":["6e69929b826b4cbc9b170da8d361413e","bc45f678eb3641559caa6cb3659b8ef4"],"ownerFlag":1,"soldiers":{"107300":100},"type":0,"withAirplane":false,"point":20165341}
+2017-11-18 01:38:00,805 | INFO  | ZSC81-com.smartfoxserver.v2.controllers.ExtensionController-65 | com.elex.cok.user | ZSC81 | CMD-OUT | MarchWorldPoint | 81-1269432740000080-2.26.2 | 0 | E000000 | march hero status error.
+
+
+16ce59fcfcd84257ae2e101f7196eac2

@@ -1,0 +1,53 @@
+
+调查玩家任务未完成，
+[root@hg23 SFS2X]# grep 'UpgradeBuilding.*75a096c38e034f75ae92c27132a547a7' logs/smartfox.log.2017-08-26-*
+logs/smartfox.log.2017-08-26-07:2017-08-26 07:31:38,200 | INFO  | ZSC59-com.smartfoxserver.v2.controllers.ExtensionController-96 | com.elex.cok.user | ZSC59 | CMD-IN | UpgradeBuilding | 59-1672439582000059-2.15.2 | {"gold":0,"upStar":0,"subtype":0,"uuid":"75a096c38e034f75ae92c27132a547a7"}
+logs/smartfox.log.2017-08-26-07:2017-08-26 07:31:38,216 | INFO  | ZSC59-com.smartfoxserver.v2.controllers.ExtensionController-96 | com.elex.cok.user | ZSC59 | CMD-OUT | UpgradeBuilding | 59-1672439582000059-2.15.2 | 16 | {"para":0,"size":589,"itemObj":{"opType":1,"para1":"8","para2":"0","para3":"0","para4":"0","uuid":"75a096c38e034f75ae92c27132a547a7","para5":"0","building":"400000;9","para6":"0","pos":53,"sub_type":0,"destroy_time":7448,"star_building":"","wood":64400,"power":741,"exp":2234,"unpack_time":10,"pack_time":0,"level":8,"resource":0,"putId":"","food":0,"stone":0,"nextLevelParas":"9,0,0,0,0,0","itemId":"403000","iron":0,"silver":0,"time":17875,"starNum":0,"starRate":0},"num":0,"startTime":1503732698207,"updateTime":1503747446717,"endTime":0,"type":0,"uuid":"299e28c08d954564941b0e87cca9e34c","qid":1} | {"gold":479,"payGold":0,"iron":0,"wood":422897,"silver":22000,"food":112805,"stone":0}
+
+
+grep '299e28c08d954564941b0e87cca9e34c' logs/smartfox.log.2017-08-26-0[78] | awk '{for(i=3;i<=10;i++) $i=""; $1=""; sub("\"check_obj[^}]*},?","",$0); sub("\"cmdBaseTime\":\"[0-9]+\",?","",$0); sub("\"cmd_delay[^]]*],?","",$0); sub(",}$","}",$0); sub("\\| {\"gold.*stone\":[0-9]*}$","",$0); print substr($0,0,220)}'
+07:31:49,331         | CMD-OUT | SpeedQueue | 59-1672439582000059-2.15.2 | 12 | {"remainGold":479,"itemObj":{},"num":0,"count":0,"updateTime":1503736368330,"finished":false,"type":0,"uuid":"299e28c08d954564941b0e87cca9e;
+-- 2017-08-26 08:32:48
+
+
+grep '299e28c08d954564941b0e87cca9e34c' logs/smartfox.log.2017-08-26-08
+2017-08-26 08:01:41,815 | INFO  | ZSC59-thread-login_logout_thread-13 | com.elex.cok.user | ZSC59 | PUSH | init | 59-1672439582000059
+.* {"para":0,"itemObj":{"opType":1,"para1":"8","para2":"0","para3":"0","para4":"0","uuid":"75a096c38e034f75ae92c27132a547a7","para5":"0","building":"400000;9","para6":"0","pos":53,"sub_type":0,"destroy_time":7448,"star_building":"","wood":64400,"power":741,"exp":2234,"unpack_time":10,"pack_time":0,"level":8,"resource":0,"putId":"","food":0,"stone":0,"nextLevelParas":"9,0,0,0,0,0","itemId":"403000","iron":0,"silver":0,"time":17875,"starNum":0,"starRate":0},"num":0,"startTime":1503732698207,"updateTime":1503736320330,"endTime":0,"type":0,"uuid":"299e28c08d954564941b0e87cca9e34c","qid":1,"isHelped":1}
+-- 2017-08-26 08:32:00 这个时间点进行结算（客户端请求）
+
+
+select * from lognew_2017_08_26 where uid='1672439582000059' and category='usertask.complete' and f2='2400108';
+-- 2017-08-26 08:37:13 实际是这个时间点进了结算（加载userprofile）
+
+
+grep '1672439582000059.*discon\|User login.*1672439582000059' logs/smartfox.log.2017-08-26-0[89]
+2017-08-26 08:11:51,127 | INFO  | SocketReader | com.smartfoxserver.v2.entities.SFSZone | User: 1672439582000059 was disconnected.
+2017-08-26 09:00:34,760 | INFO  | pool-1-thread-3 | com.smartfoxserver.v2.api.SFSApi | User login: { Zone: ZSC59 }, ( User Name: 1672439582000059, Id: 124590, Priv: 0, Sess: 86.7.189.169:40993 ) , Type: Android
+-- 玩家在应该结算的时间点不在线
+
+
+最近的一次登录下发的数据，任务 2400108 的状态是已完成，可领奖的状态。正常
+{"reward": [{"type": 0,"value": 7440}, {"type": 3,"value": 7440}, {"type": 6,"value": 186}],"num": 8,"id": "2400108","state": 1,"type": 1},
+
+
+
+
+[root@hg23 SFS2X]# grep 'init.*1672439582000059' logs/smartfox.log.2017-08-26-0[89] | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"2400108"[^}]*},)|(?:"level"[^}]*403000[^}]*}))/g' 
+logs/smartfox.log.2017-08-26-08:2017-08-26 08:01:41,815 	|	 59-1672439582000059 	|	"level":7,"resource":0,"putId":"","food":0,"stone":0,"nextLevelParas":"8,0,0,0,0,0","itemId":"403000","iron":0,"silver":0,"time":14896,"starNum":0,"starRate":0}	|	"level":8,"resource":0,"putId":"","food":0,"stone":0,"nextLevelParas":"9,0,0,0,0,0","itemId":"403000","iron":0,"silver":0,"time":17875,"starNum":0,"starRate":0}
+logs/smartfox.log.2017-08-26-08:2017-08-26 08:01:41,846 	|	"2400108","state":0,"type":1},
+logs/smartfox.log.2017-08-26-09:2017-08-26 09:00:34,938 	|	 59-1672439582000059 	|	"level":8,"resource":0,"putId":"","food":0,"stone":0,"nextLevelParas":"9,0,0,0,0,0","itemId":"403000","iron":0,"silver":0,"time":17875,"starNum":0,"starRate":0}
+logs/smartfox.log.2017-08-26-09:2017-08-26 09:00:34,969 	|	"2400108","state":1,"type":1},
+
+
+玩家领奖时间
+select * from lognew_2017_08_26 where uid='1672439582000059' and category='usertask.reward' and f2='2400108';
+2017-08-26 11:59:34
+------------------------------------------------------------------------
+
+
+
+随机分布---
+http://blog.sina.com.cn/s/blog_8eee7fb60101rqvd.html
+http://www.xiaoxiangzi.com/Programme/Python/10062.html
+http://bbs.csdn.net/topics/110159563
+http://www.cnblogs.com/rourou1/p/6178070.html

@@ -1,0 +1,71 @@
+沙场争霸补银币 ----
+
+每一笔银币掠夺量; select from_unixtime(timestamp/1000) as time,f1,f2,f3,f4,f5 from lognew_2017_09_22 where category='activity.sand_arena_rob' and uid=736081177000061 union
+select from_unixtime(timestamp/1000) as time,f1,f2,f3,f4,f5 from lognew_2017_09_23 where category='activity.sand_arena_rob' and uid=736081177000061 union
+select from_unixtime(timestamp/1000) as time,f1,f2,f3,f4,f5 from lognew_2017_09_24 where category='activity.sand_arena_rob' and uid=736081177000061
+;
+
+------------------------------------------------------------------------
+
+
+AMS-11624 死锁分析：
+------------------------
+LATEST DETECTED DEADLOCK
+------------------------
+170924  0:00:00
+*** (1) TRANSACTION:
+TRANSACTION F361ADB7, ACTIVE 0 sec starting index read
+mysql tables in use 1, locked 1
+LOCK WAIT 2 lock struct(s), heap size 376, 1 row lock(s)
+MySQL thread id 1096818, OS thread handle 0x7f16f07be700, query id 14714712213 10.80.185.75 root Updating
+update alliance set
+    present_level = 3,
+    present_exp = 18660
+    where uid ='aaba97f4ab7740e89cdafbc9d4ecb4fb'
+
+*** (1) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 737488 page no 18 n bits 136 index `PRIMARY` of table `scdb46`.`alliance` trx id F361ADB7 n locks rec but not gap waiting
+
+*** (2) TRANSACTION:
+TRANSACTION F361AD50, ACTIVE 0 sec fetching rows
+mysql tables in use 3, locked 3
+912 lock struct(s), heap size 96696, 62546 row lock(s), undo log entries 490
+MySQL thread id 1096862, OS thread handle 0x7f16c337d700, query id 14714711846 10.80.185.75 root Sending data
+update alliance a left join (select a.uid,sum(am.yesterdayLogin) dau from alliance a inner join alliance_member am on a.uid = am.allianceId group by a.uid) d on d.uid = a.uid set a.dau = d.dau
+*** (2) HOLDS THE LOCK(S):
+RECORD LOCKS space id 737488 page no 18 n bits 136 index `PRIMARY` of table `scdb46`.`alliance` trx id F361AD50 lock mode S
+*** (2) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 737488 page no 18 n bits 136 index `PRIMARY` of table `scdb46`.`alliance` trx id F361AD50 lock_mode X waiting
+*** WE ROLL BACK TRANSACTION (1)
+
+
+https://stackoverflow.com/questions/2132105/mysql-transaction-waiting-for-lock-which-is-already-granted-this-is-causing-d
+http://www.cnblogs.com/nsw2018/p/5820979.html
+http://www.cnblogs.com/wangtao_20/p/3463435.html
+http://blog.csdn.net/u011375296/article/details/51427985
+
+
+s1:
+start transaction;
+update alliance set
+    present_level = 3,
+    present_exp = 18660
+    where uid ='54a29b5855c046d3b75cd2377b29c88b';
+;    
+rollback;
+      
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS; 
+SELECT * FROM information_schema.INNODB_TRX;
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
+set innodb_lock_wait_timeout=1000;
+
+
+s2:
+start transaction;
+update alliance_member A left join (select a.uid,sum(am.yesterdayLogin) dau from alliance a inner join alliance_member am on a.uid = am.allianceId group by a.uid) d on d.uid = A.uid set A.yesterdayLogin = d.dau;;
+rollback;
+
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS; 
+SELECT * FROM information_schema.INNODB_TRX;
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
+set innodb_lock_wait_timeout=1000;
