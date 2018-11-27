@@ -1,0 +1,17 @@
+-- http://jira.super-chameleon.com:8090/browse/AMS-17262
+select * from user_hospital where uid='223388000001';
+
+delete from user_hospital where uid='223388000001' and armyId in ('107308','107309','107310');
+
+select * from ;
+
+delete from user_hospital where uid='223388000001';
+INSERT INTO `user_hospital` (`uid`, `armyId`, `dead`, `heal`, `finishTime`)
+VALUES
+	('223388000001', '107000', 48, 0, 0),
+	('223388000001', '107007', 920, 0, 0),
+	('223388000001', '107107', 1, 0, 0),
+	('223388000001', '107202', 27, 0, 0);
+
+
+update user_resource set stone=4604,wood=3475860,iron=333520,food=956301 where uid='223388000001';

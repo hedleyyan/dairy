@@ -1,0 +1,56 @@
+SFS灾害恢复
+
+323,325,327
+1:s=323,325,327 b=8
+HGServerList.xls 修改
+AMS备用机/线上服务器物理/ 加入原因
+
+hg32v108 -> hg32vb3.zealot.com
+75.126.160.9	10.86.182.248 -> 75.126.209.157	10.81.179.113
+
+2. 确认原 sfs 服务是否已停. 没有手工停掉
+
+2. 修改新 db slave 机器的 redis, 
+停掉问题redis的slave复制服务(修改原slave库/etc/redis/6379.conf 注掉slaveof 110.186.249.164 6379)
+重启原slave redis:执行 /etc/init.d/redis_6379 stop|start
+
+
+
+--------------------
+
+重新做机器 -> https://control.softlayer.com/  -> IBM id 登入, 搜目标机器, 重做 next/next waiting...
+wenliang.han@gmail.com
+50252680@Zealot
+
+
+
+--------------------
+
+
+DB master 灾害恢复
+
+-> global redis
+127.0.0.1:6379> PUBSUB CHANNELS
+1) "CrossRefreshMybatisChannel"
+2) "CrossRefreshRMIChannel"
+3) "AllServerPushChannel"
+
+127.0.0.1:6379> PUBLISH CrossRefreshMybatisChannel 323
+(integer) 197
+127.0.0.1:6379> PUBLISH CrossRefreshMybatisChannel 325
+(integer) 194
+127.0.0.1:6379> PUBLISH CrossRefreshMybatisChannel 327
+(integer) 194
+127.0.0.1:6379>
+ 
+刷新池子
+
+
+问题服SFS已经启动
+1. 后续请手工启动问题服新slave的备份服务  -> /etc/init.d/redis_6379 stop
+2. 停止原slave上的redis复制服务， 在新slave上开启redis复制服务
+DB灾害恢复全部完成!
+
+-> 更新 ansible -> host & sfs_..config
+
+--------------------

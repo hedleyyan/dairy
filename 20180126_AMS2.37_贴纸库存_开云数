@@ -1,0 +1,6 @@
+-- 查贴纸库存
+select uid,substring_index(right(stickers,length - locate - 3), '\'', 1) as num from (select uid,locate ('414#',stickers) as locate,stickers,length(stickers) as length from user_new_year_stickers) a where locate>0;
+
+-- 开云数
+select if (num=0 and length=2, 0, num+1) as num from (
+select length(unlock_cloud)-length(replace(unlock_cloud,',','')) as num, length(unlock_cloud) as length from user_rts_world_pata) as a;

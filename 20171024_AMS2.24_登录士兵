@@ -23,6 +23,8 @@ category  like  'user.login.%'
 四个log， 对应的f1-f11 ， 是1-11级兵的数量 
 玩家每次登陆的时候都会记录一次
 
+// 援兵战斗记录
+http://jira.super-chameleon.com:8090/browse/AMS-15440
 
 
 ----

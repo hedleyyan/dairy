@@ -1,0 +1,86 @@
+集结流程
+
+
+1. 队长发起集结 -> 
+	MarchWorldPoint | "type":4 | "mType":4 | "sp":19038892
+	marchTask | waitTime:3599980 -> 集结等待时间出击
+	march uuid = team uuid : d87f126b69184d2aa4a4ce4c13d60457
+
+
+
+2018-08-11 11:59:23,342 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-114 | com.elex.cok.user | ZSC58 | CMD-IN | MarchWorldPoint | 58-550108419000058-2.62.0 | {"_sib":56495,"generals":[],"heroes":["8d377eb64d024673b5b1284003518a1d","1dca0c246be84a63896a69a1a1c40af8","86f84619b5964d6e9afb4db299a5eca5","0529a98f22d144068b6cb8e6d8d153ff"],"marchKey":"fde71585054c10f0d444011f68076fa1","crc":"bGExNj80MzQ2ZDM4MGhlZ240PGViMmc1PjxhZGNkOjM=","COMMAND_ID":"1533988762_62054","soldiers":{"107210":7000,"107110":7000,"108173":50000,"108272":50000,"108074":50000,"108174":50000,"108273":50000,"108274":50000,"107010":9260,"108071":50000,"108072":50000,"108171":50000,"108172":50000,"108271":50000,"108073":50000},"ownerFlag":1,"wtIndex":4,"type":4,"withAirplane":true,"point":18727273}
+2018-08-11 11:59:23,383 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-114 | c.e.c.g.world.march.AbstractWorldMarch | ZSC58 | marchTask. uuid:d87f126b69184d2aa4a4ce4c13d60457, waitTime:3599980
+2018-08-11 11:59:23,391 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-114 | com.elex.cok.user | ZSC58 | PUSH | push.world.march | 58-550108419000058 | {"tType":1,"color":177036036,"officer":"216000","territoryStat":0,"hero":["8d377eb64d024673b5b1284003518a1d","1dca0c246be84a63896a69a1a1c40af8","86f84619b5964d6e9afb4db299a5eca5","0529a98f22d144068b6cb8e6d8d153ff"],"dp":18727273,"uuid":"d87f126b69184d2aa4a4ce4c13d60457","oType":0,"airforceInfo":["1235","1225","1195","1205","1245","1215"],"allianceId":"964c7b374eae4ece956a3843aa40a965","slowDown":true,"tali":"c42871e50dbe4c34a5f25357bd88d989","sp":19038892,"st":1533992363363,"tct":1533988763346,"mt":243000,"stealthEndTime":1533988996643,"territoryStartTime":0,"extraParam":0,"team":"d87f126b69184d2aa4a4ce4c13d60457","o":"天壹","mType":4,"et":1533992606363,"army":[{"total":209260,"dead":0,"armId":0},{"total":207000,"dead":0,"armId":1},{"total":207000,"dead":0,"armId":2}],"sType":1,"ouid":"550108419000058","plane_id":2,"territoryUpdateTime":0,"_tid":"9328b5b00d794ef1bdb2640660f9f7c3","asn":"SDU"}
+
+
+
+
+2. 玩家加入集结
+	MarchWorldPoint | "type":5 | "mType":5 | "dp":19038892 | ***dp=↑sp***
+	marchTask | marchTime:10000 -> 行军到队长家时间
+	team uuid = 队长的 march uuid
+	uuid : 5b8c90dc8ee849cba7001dea2cf03826
+
+
+
+2018-08-11 11:59:39,295 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-77 | com.elex.cok.user | ZSC58 | CMD-IN | MarchWorldPoint | 58-1095424596000052-2.61.1 | {"_sib":53411,"generals":[],"heroes":["4ad4f33517c54731993ae0ae722808f3","be2d1a7ced9b4c648162d5aa66f0af18","fffdb6c742f643f3a89da72d0f14786b","2815e66baa984e09b87ecaa67958a9d8"],"marchKey":"5958d3df121c4280f201f7666af65207","crc":"N2UwMWoxMmhlMTc+bW00MGo1NWU0ZD1hPzA1NWxobWA=","COMMAND_ID":"1533988778_46412","soldiers":{"107210":142117,"108074":7128,"107208":10173,"107109":111411,"107008":14305,"107010":124295,"108072":139,"108073":192},"ownerFlag":1,"team":"9328b5b00d794ef1bdb2640660f9f7c3","type":5,"withAirplane":true,"point":19038892}
+2018-08-11 11:59:39,323 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-77 | c.e.c.g.world.march.AbstractWorldMarch | ZSC58 | marchTask. uuid:5b8c90dc8ee849cba7001dea2cf03826, marchTime:10000
+2018-08-11 11:59:39,330 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-77 | com.elex.cok.user | ZSC58 | PUSH | push.world.march | 58-1095424596000052 | {"tType":1,"color":177036036,"territoryStat":0,"hero":["4ad4f33517c54731993ae0ae722808f3","be2d1a7ced9b4c648162d5aa66f0af18","fffdb6c742f643f3a89da72d0f14786b","2815e66baa984e09b87ecaa67958a9d8"],"dp":19038892,"uuid":"5b8c90dc8ee849cba7001dea2cf03826","oType":0,"airforceInfo":["1215","1225","1235","1425","1375","1205"],"allianceId":"964c7b374eae4ece956a3843aa40a965","slowDown":false,"tali":"964c7b374eae4ece956a3843aa40a965","sp":19194541,"st":1533988779304,"tct":1533988763346,"mt":10000,"stealthEndTime":0,"territoryStartTime":0,"extraParam":0,"team":"d87f126b69184d2aa4a4ce4c13d60457","o":"黑色的阿苏","mType":5,"et":1533988789304,"army":[{"total":152290,"dead":0,"armId":2},{"total":146059,"dead":0,"armId":0},{"total":111411,"dead":0,"armId":1}],"sType":0,"prt":1,"ouid":"1095424596000052","plane_id":2,"territoryUpdateTime":0,"_tid":"9328b5b00d794ef1bdb2640660f9f7c3","asn":"SDU"}
+
+
+
+3. 玩家集结到达队长家
+	在准备一块走的时间之前到达, 加入大部队 -> push.world.march.win | "et" -> 大部队出征时间
+	在大部队已经走了之后到达, 直接返回家 -> push.world.march.fail | "sType":2
+
+
+
+---1---
+2018-08-11 11:59:46,005 | INFO  | ZSC58-thread-world_march_pool-16 | c.e.c.g.world.normal.NormalMarchTask | ZSC58 | NormalMarchTask start. 5b8c90dc8ee849cba7001dea2cf03826
+2018-08-11 11:59:46,005 | INFO  | ZSC58-thread-world_march_pool-16 | com.elex.cok.user | ZSC58 | PUSH | push.world.march.win | 58-1095424596000052 | {"st":1533992363363,"tct":1533988763346,"uuid":"5b8c90dc8ee849cba7001dea2cf03826","oType":0,"et":1533992606363}
+2018-08-11 11:59:46,011 | INFO  | ZSC58-thread-world_march_pool-16 | c.e.c.g.world.normal.NormalMarchTask | ZSC58 | NormalMarchTask end. 5b8c90dc8ee849cba7001dea2cf03826
+
+
+---2---
+2018-08-11 12:01:29,890 | INFO  | ZSC58-thread-world_march_pool-1 | c.e.c.g.world.normal.NormalMarchTask | ZSC58 | NormalMarchTask start. d511cdd879c44408a02bccb31f0ba1fe
+2018-08-11 12:01:29,897 | INFO  | ZSC58-thread-world_march_pool-1 | com.elex.cok.user | ZSC58 | PUSH | push.world.march.fail | 58-952989922000052 | {"color":177036036,"tType":1,"territoryStat":0,"hero":["7a99509790f54bfa80b6e89a97c50574","93c1783c178943b68fab1e8cecf42719","e82fa04968074b96bd06523fde7155cd","fe88ae8112ec4e6e8e89c03ce9b7520c"],"dp":19739296,"uuid":"d511cdd879c44408a02bccb31f0ba1fe","oType":0,"airforceInfo":["1385","1375","1215","1235","1425","1405"],"allianceId":"964c7b374eae4ece956a3843aa40a965","slowDown":false,"tali":"964c7b374eae4ece956a3843aa40a965","sp":19038892,"st":1533988889890,"plunderRes":"[]","mt":233000,"stealthEndTime":1533988880570,"territoryStartTime":0,"extraParam":0,"o":"合服前燒你全家","mType":5,"et":1533989122890,"army":[{"total":228023,"dead":0,"armId":2},{"total":154203,"dead":0,"armId":1},{"total":138163,"dead":0,"armId":0}],"sType":2,"ouid":"952989922000052","plane_id":3,"territoryUpdateTime":0,"asn":"SDU"}
+2018-08-11 12:01:29,903 | INFO  | ZSC58-thread-world_march_pool-1 | c.e.c.g.world.normal.NormalMarchTask | ZSC58 | NormalMarchTask end. d511cdd879c44408a02bccb31f0ba1fe
+
+
+
+
+
+4. 队长使用立即出征
+	AttackAllianceTeam -> 队员大于等于2时可用, 需要有相应科技 || 特定英雄check
+	push.hero.info -> 有特定英雄
+	push.science.assemble.num -> 有特定科技
+
+
+
+2018-08-11 12:01:09,204 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-139 | com.elex.cok.user | ZSC58 | CMD-IN | AttackAllianceTeam | 58-550108419000058-2.62.0 | {"_sib":88917,"crc":"PTM/MT80ZjYyb2lqNm1saTxoamtpb2FmPzw/N2ZlOzY=","teamUid":"9328b5b00d794ef1bdb2640660f9f7c3","COMMAND_ID":"1533988868_13104"}
+2018-08-11 12:01:09,207 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-139 | com.elex.cok.user | ZSC58 | PUSH | push.hero.info | 58-550108419000058 | {"specId":"2078","capture_pos":19157675,"mail_uid":"16829c1be530486c95bb79408a5d4d9b","deathTime":1514347495713,"protectCount":0,"rebirthTime":0,"star":5,"freeSpeed":1,"level":60,"stationType":2,"freeSpeedTime":1533946174063,"freedomTime":1514646295713,"capture_uid":"82227464000058","uuid":"73dc217bde7445a08169c76df83a133f","skill_info":[{"s":6001,"l":1},{"s":6002,"l":1},{"s":6003,"l":2},{"s":6004,"l":2},{"s":6005,"l":3},{"s":6006,"l":1},{"s":6007,"l":2},{"s":6008,"l":2},{"s":6009,"l":1}],"sType":6,"capture_name":"武堂 •°●MJ●°•","rank":12,"abbr":"SDU","stationIndex":3,"stationId":"9902","status":1,"backTime":1514042113444}
+2018-08-11 12:01:09,211 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-139 | com.elex.cok.user | ZSC58 | PUSH | push.world.march | 58-550108419000058 | {"color":177036036,"tType":1,"officer":"216000","territoryStat":0,"hero":["8d377eb64d024673b5b1284003518a1d","1dca0c246be84a63896a69a1a1c40af8","86f84619b5964d6e9afb4db299a5eca5","0529a98f22d144068b6cb8e6d8d153ff"],"dp":18727273,"uuid":"d87f126b69184d2aa4a4ce4c13d60457","oType":0,"airforceInfo":["1235","1225","1195","1205","1245","1215"],"allianceId":"964c7b374eae4ece956a3843aa40a965","slowDown":true,"tali":"c42871e50dbe4c34a5f25357bd88d989","sp":19038892,"st":1533988869207,"plunderRes":"[]","tct":1533988763346,"mt":243000,"stealthEndTime":1533988996643,"territoryStartTime":0,"extraParam":0,"team":"d87f126b69184d2aa4a4ce4c13d60457","o":"天壹","mType":4,"et":1533989112207,"army":[{"total":493482,"dead":0,"armId":0},{"total":472614,"dead":0,"armId":1},{"total":587313,"dead":0,"armId":2}],"sType":0,"ouid":"550108419000058","plane_id":2,"territoryUpdateTime":0,"_tid":"9328b5b00d794ef1bdb2640660f9f7c3","asn":"SDU"}
+2018-08-11 12:01:09,211 | INFO  | ZSC58-com.smartfoxserver.v2.controllers.ExtensionController-139 | com.elex.cok.user | ZSC58 | CMD-OUT | AttackAllianceTeam | 58-550108419000058-2.62.0 | 7 | {"COMMAND_ID":"1533988868_13104"} | {"gold":1921027,"payGold":350858,"iron":803241827,"wood":2147483647,"silver":22000,"food":5507122,"stone":38267586}
+
+
+
+
+5. 队伍等到集结倒计时结束, 开始行军
+	AllianceBattleLeaderMarchTask start.
+	push.world.march
+	AllianceBattleLeaderMarchTask end.
+
+
+
+6. 集结到达目的地
+	NormalMarchTask start -> 战斗开始
+	join success -> 谁成功加入了
+	join fail -> 谁没赶上	
+	
+
+
+2018-08-11 12:01:11,142 | INFO  | ZSC58-thread-world_march_pool-14 | c.e.c.g.world.normal.NormalMarchTask | ZSC58 | NormalMarchTask start. d87f126b69184d2aa4a4ce4c13d60457
+2018-08-11 12:01:11,142 | INFO  | ZSC58-thread-world_march_pool-14 | c.e.c.g.w.n.WorldAllianceBattleTeamFightHandler | ZSC58 | 550108419000058 team vs 1225755897000088, 1095424596000052 join success
+2018-08-11 12:01:11,142 | INFO  | ZSC58-thread-world_march_pool-14 | c.e.c.g.w.n.WorldAllianceBattleTeamFightHandler | ZSC58 | 550108419000058 team vs 1225755897000088, 952989922000052 join fail, arrivaltime 1533989042724, currTime 1533988871142, state MARCH 
+2018-08-11 12:01:11,144 | INFO  | ZSC58-thread-world_march_pool-14 | com.elex.cok.user | ZSC58 | PUSH | push.world.march | 58-952989922000052 | {"color":177036036,"tType":1,"territoryStat":0,"hero":["7a99509790f54bfa80b6e89a97c50574","93c1783c178943b68fab1e8cecf42719","e82fa04968074b96bd06523fde7155cd","fe88ae8112ec4e6e8e89c03ce9b7520c"],"dp":19038892,"uuid":"d511cdd879c44408a02bccb31f0ba1fe","airforceInfo":["1385","1375","1215","1235","1425","1405"],"allianceId":"964c7b374eae4ece956a3843aa40a965","slowDown":false,"tali":"964c7b374eae4ece956a3843aa40a965","sp":19739296,"st":1533988809724,"plunderRes":"[]","mt":233000,"stealthEndTime":1533989033404,"territoryStartTime":0,"extraParam":0,"o":"合服前燒你全家","mType":5,"et":1533989042724,"army":[{"total":228023,"dead":0,"armId":2},{"total":154203,"dead":0,"armId":1},{"total":138163,"dead":0,"armId":0}],"sType":0,"ouid":"952989922000052","plane_id":3,"territoryUpdateTime":0,"asn":"SDU"}
+2018-08-11 12:01:12,368 | INFO  | ZSC58-thread-world_march_pool-14 | com.elex.cok.puredb.model.WorldMarch | ZSC58 | world march scheduleReturnThread uuid:d87f126b69184d2aa4a4ce4c13d60457, dealy:0, time:1533988872368

@@ -5,6 +5,22 @@ select x,y,pointType,a.resType from worldpoint w,alliance_territory a where w.id
 update worldpoint w,alliance_territory a set w.pointType=0 where w.id=a.pointId and a.type=18;
 
 select id from alliance_territory al inner join worldpoint wp on al.pointId = wp.id where al.type != wp.pointType;
+
+
+"{\"st\":0,\"rt\":0,\"pt\":0,\"ai\":\"37175e997e494ba6ad839707ff73df1d\",\"afn\":\"D3 Legion\",\"i\":18575597,\"l\":8,\"tid\":18596080,\"ft\":0,\"o\":\"The Lawman\",\"pt_resource\":0,\"t\":18,\"v\":244472099,\"tactive\":1,\"aic\":\"Knight\",\"t1\":\"3\",\"asn\":\"D3L\",\"taid\":\"37175e997e494ba6ad839707ff73df1d\"}"
+
+
+
+大地图显示不出来资源矿 -1
+hmset world64 21484227 "{\"st\":0,\"rt\":0,\"pt\":0,\"i\":21484227,\"l\":8,\"tid\":21484225,\"ft\":0,\"o\":\"\",\"pt_resource\":0,\"t\":18,\"v\":179716735,\"tactive\":1,\"t1\":\"0\",\"taid\":\"65161920b0fe4b83a26b0ca8e6abe8e3\",\"tres\":0,\"tlv\":1,\"tabbr\":\"0aa\"}"
+添加了 tres、 tlv、 tabbr
+
+
+hmset world64 21484227 "{\"st\":0,\"rt\":0,\"pt\":0,\"i\":21484227,\"l\":8,\"tid\":21484225,\"ft\":0,\"o\":\"\",\"pt_resource\":0,\"t\":18,\"v\":177165079,\"tactive\":1,\"t1\":\"0\",\"taid\":\"65161920b0fe4b83a26b0ca8e6abe8e3\",\"tres\":0,\"tlv\":1,\"tabbr\":\"0aa\"}"
+
+
+
+
 ------------------------------------------------------------------------
 
 

@@ -1,0 +1,116 @@
+"{\"st\":1513551300,\"tcount\":1,\"rt\":1520327883,\"pt\":0,\"i\":19591722,\"tname\":\"FKXX\",\"tdirection\":\"0_o\",\"l\":2,\"tid\":19579435,\"ft\":0,\"pt_resource\":0,\"t\":3,\"tabbr\":\"FKX\",\"v\":31200,\"tactive\":1,\"t1\":\"102\",\"taid\":\"3a3c4ff42251487ea757fc3e87903b15\"}"
+
+需要去除的信息项
+"o"
+"ai"
+"asn"
+"aic"
+"afn"
+
+
+
+
+---------------
+
+
+
+
+  <Group id="default">
+    <ItemSpec id="12000" type="1" slot="2" star="[5]" effect="[1]" base_value="[4000]" growth_value="[100]" power="[300]" unlock_level="0" level_growth="[800]" />
+    <ItemSpec id="12001" type="2" slot="4" star="[9,12,16]" effect="[2,3,4]" base_value="[4000,2000,2000]" growth_value="[100,50,50]" power="[300,300,300]" unlock_level="0" level_growth="[400,200,200]" />
+    <ItemSpec id="12002" type="3" slot="4" star="[13,14,16]" effect="[5,6,7]" base_value="[1000,1000,1000]" growth_value="[25,25,25]" power="[300,300,300]" unlock_level="10" level_growth="[100,100,100]" />
+    <ItemSpec id="12003" type="4" slot="4" star="[13,14,16]" effect="[8,9,10]" base_value="[1000,1000,1000]" growth_value="[25,25,25]" power="[300,300,300]" unlock_level="20" level_growth="[100,100,100]" />
+    <ItemSpec id="12004" type="5" slot="4" star="[12,13,14,15,16]" effect="[13,15,16,19,20]" base_value="[10000,4000,4000,1000,1000]" growth_value="[250,100,100,25,25]" power="[300,300,300,300,300]" unlock_level="30" level_growth="[1000,400,400,100,100]" />
+    <ItemSpec id="12005" type="6" slot="4" star="[12,13,14,16]" effect="[21,22,23,24]" base_value="[1000,1000,1000,1000]" growth_value="[25,25,25,25]" power="[300,300,300,300]" unlock_level="35" level_growth="[50,50,50,50]" />
+    <ItemSpec id="12006" type="7" slot="4" star="[13,16]" effect="[26,18]" base_value="[1000,2000]" growth_value="[25,50]" power="[300,300]" unlock_level="40" level_growth="[50,100]" />
+  </Group>
+
+"officer_info": [{
+	"level": 4,
+	"type": 1
+}, {
+	"level": 7,
+	"type": 2
+}, {
+	"level": 8,
+	"type": 3
+}, {
+	"level": 10,
+	"type": 4
+}, {
+	"level": 8,
+	"type": 5
+}, {
+	"level": 10,
+	"type": 6
+}, {
+	"level": 0,
+	"type": 7
+}]
+
+2000
+
+
+2000 + 200*7 + 50*40=5400
+
+
+<ItemSpec id="1295" pos="5" color="5" effect="78;20" equip="" make="" power="10240" growth_power="256" goods="210739;600" identification_pool="25" strengthen_num="100" />
+
+
+<ItemSpec id="10091" color="1" effect_id="78" effect_num="2" strengthen_add="0.05" power="40" growth_power="1" />
+<ItemSpec id="10092" color="2" effect_id="78" effect_num="4" strengthen_add="0.1" power="200" growth_power="5" />
+<ItemSpec id="10093" color="3" effect_id="78" effect_num="8" strengthen_add="0.2" power="800" growth_power="20" />
+<ItemSpec id="10094" color="4" effect_id="78" effect_num="12" strengthen_add="0.3" power="2000" growth_power="50" />
+<ItemSpec id="10095" color="5" effect_id="78" effect_num="20" strengthen_add="0.5" power="8000" growth_power="200" />
+
+
+<ItemSpec id="10140" type_componet="1001" effect="1825;10" power="5000" />
+<ItemSpec id="10240" type_componet="1002" effect="1825;30" power="15000" />
+<ItemSpec id="10340" type_componet="1003" effect="1825;30" power="15000" />
+<ItemSpec id="10440" type_componet="1004" effect="1825;30" power="15000" />
+<ItemSpec id="10540" type_componet="1005" effect="1825;30" power="15000" />
+<ItemSpec id="10640" type_componet="1006" effect="1825;30" power="15000" />
+<ItemSpec id="10740" type_componet="1007" effect="1825;30" power="15000" />
+<ItemSpec id="10840" type_componet="1008" effect="1825;30" power="15000" />
+<ItemSpec id="10940" type_componet="1009" effect="1825;30" power="15000" />
+<ItemSpec id="11040" type_componet="1010" effect="1825;30" power="15000" />
+<ItemSpec id="11140" type_componet="1011" effect="1825;30" power="15000" />
+<ItemSpec id="11240" type_componet="1012" effect="1825;30" power="15000" />
+<ItemSpec id="11340" type_componet="1013" effect="1825;20" power="10000" />
+<ItemSpec id="11440" type_componet="1014" effect="1825;20" power="10000" />
+
+
+
+
+<ItemSpec id="1802102" science_lv="2" max_lv="10" para1="78" para2="2" power="1525" behavior="0" plane_id="0" />
+<ItemSpec id="1802103" science_lv="3" max_lv="10" para1="78" para2="3" power="2156" behavior="0" plane_id="0" />
+<ItemSpec id="1802104" science_lv="4" max_lv="10" para1="78" para2="4" power="3049" behavior="0" plane_id="0" />
+<ItemSpec id="1802105" science_lv="5" max_lv="10" para1="78" para2="5" power="4312" behavior="0" plane_id="0" />
+<ItemSpec id="1802106" science_lv="6" max_lv="10" para1="78" para2="6" power="6098" behavior="0" plane_id="0" />
+<ItemSpec id="1802107" science_lv="7" max_lv="10" para1="78" para2="7" power="8624" behavior="0" plane_id="0" />
+<ItemSpec id="1802108" science_lv="8" max_lv="10" para1="78" para2="8" power="12196" behavior="0" plane_id="0" />
+<ItemSpec id="1802109" science_lv="9" max_lv="10" para1="78" para2="9" power="17248" behavior="0" plane_id="0" />
+<ItemSpec id="1802110" science_lv="10" max_lv="10" para1="78" para2="10" power="24393" behavior="0" plane_id="0" />
+<ItemSpec id="1803600" science_lv="0" max_lv="15" science_condition="1803303" para1="78" para2="0" power="0" behavior="0" plane_id="0" />
+<ItemSpec id="1803601" science_lv="1" max_lv="15" para1="78" para2="1" power="6723" behavior="0" plane_id="0" />
+<ItemSpec id="1803602" science_lv="2" max_lv="15" para1="78" para2="2" power="8470" behavior="0" plane_id="0" />
+<ItemSpec id="1803603" science_lv="3" max_lv="15" para1="78" para2="3" power="10672" behavior="0" plane_id="0" />
+<ItemSpec id="1803604" science_lv="4" max_lv="15" para1="78" para2="4" power="13446" behavior="0" plane_id="0" />
+<ItemSpec id="1803605" science_lv="5" max_lv="15" para1="78" para2="5" power="16940" behavior="0" plane_id="0" />
+<ItemSpec id="1803606" science_lv="6" max_lv="15" para1="78" para2="6" power="21343" behavior="0" plane_id="0" />
+<ItemSpec id="1803607" science_lv="7" max_lv="15" para1="78" para2="8" power="26891" behavior="0" plane_id="0" />
+<ItemSpec id="1803608" science_lv="8" max_lv="15" para1="78" para2="10" power="33881" behavior="0" plane_id="0" />
+<ItemSpec id="1803609" science_lv="9" max_lv="15" para1="78" para2="12" power="42687" behavior="0" plane_id="0" />
+<ItemSpec id="1803610" science_lv="10" max_lv="15" para1="78" para2="14" power="53782" behavior="0" plane_id="0" />
+<ItemSpec id="1803611" science_lv="11" max_lv="15" para1="78" para2="16" power="67761" behavior="0" plane_id="0" />
+<ItemSpec id="1803612" science_lv="12" max_lv="15" para1="78" para2="18" power="85374" behavior="0" plane_id="0" />
+<ItemSpec id="1803613" science_lv="13" max_lv="15" para1="78" para2="21" power="107564" behavior="0" plane_id="0" />
+<ItemSpec id="1803614" science_lv="14" max_lv="15" para1="78" para2="24" power="135523" behavior="0" plane_id="0" />
+<ItemSpec id="1803615" science_lv="15" max_lv="15" para1="78" para2="30" power="170748" behavior="0" plane_id="0" />
+<ItemSpec id="1820600" science_lv="0" max_lv="3" science_condition="1820701" para1="78" para2="0" power="0" behavior="0" plane_id="1" />
+<ItemSpec id="1820601" science_lv="1" max_lv="3" para1="78" para2="3" power="463" behavior="0" plane_id="1" />
+<ItemSpec id="1820602" science_lv="2" max_lv="3" para1="78" para2="6" power="1470" behavior="0" plane_id="1" />
+<ItemSpec id="1820603" science_lv="3" max_lv="3" para1="78" para2="10" power="4666" behavior="0" plane_id="1" />
+
+
+

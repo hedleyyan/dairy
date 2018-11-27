@@ -22,3 +22,10 @@ select A.id,A.pointType,B.id from worldpoint A left join (select W.id  from worl
 
 -- AMS-13516 放超级武器坐标
 grep 'CreateTerritorySuperWeapon.*pointId' logs/smartfox.log.2017-11-05-1[01] |perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:pointId":)[0-9]+,)/g' | perl -pe 's/pointId":([0-9]*),/$1/eg' | awk -F\| '{x=($3-16777216)%4096; y=int(($3-16777216)/4096) ; $3=x" "y} 1'
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+http://jira.super-chameleon.com:8090/browse/AMS-17340
+大地图已经被清理的点，还有占领者信息

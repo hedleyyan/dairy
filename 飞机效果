@@ -1,0 +1,83 @@
+
+
+空军科技只对以下的效果生效, 其他配置新的效果都不生效 (代码有限制)
+
+1. 跟随飞机生效的效果 (战斗类)
+, ENEMY_FOOT_ALL_REDUCE(1989, "坦克兵种的攻防血属性减少10%")
+    ALL_ARMY_DEFENCE_PERCENT(1834, "全体士兵防御增加"),
+    ALL_ARMY_LIFE_PERCENT(1835, "全体士兵生命增加"),
+    ALL_ARMY_ATTACK_PERCENT(1836, "全体士兵攻击力增加"),
+,ALL_ARMY_ATTRIBUTES(1824,"全兵种攻防血")
+, ENEMY_FOOT_DAMAGE_ADD(1990, "在战斗中造成坦克兵种15%的伤害")
+,AIR_UNACTIVE_SKILL_CRASH_UP(2060, "新飞机被动技能：突击兵数量大于20，攻防生命提高X")
+,AIR_ACTIVE_SKILL_DOUBLE_DAMAGE(2058, "新飞机主动技能：突击兵对直升机概率X造成2倍伤害")
+FOOT_ARMY_ATK_ADD1(1011, "剑术"),  //机甲攻击加成
+RIDE_ARMY_ATK_ADD1(1013, "骑术"),   // 飞行器 攻击加成
+BOW_ARMY_ATK_ADD1(1015, "箭术"),   //火箭炮手 攻击加成
+CAR_ARMY_ATK_ADD1(1017, "车术"),   // 远程炮 攻击加成
+
+2. 不管飞机状态, 都生效的效果 (城建类)
+,MARCH_ADD_ATK(1927,"行军队列若在15秒内到达目的地，则攻击力增加XX%")
+MAKE_FORT_SPEED(67, "陷阱训练速度"),//造陷阱速度
+BUILDING_SPD(68, ""), // 建造速度
+ATTACK_MONSTER_INCREASE(1691, "怪物杀手加成：对怪物、魔兽、世界BOSS攻击力加成nn％"),
+,FIGHT_MONSTER_MINUS_LOSS(1926, "攻击攻击野怪、世界BOSS、大型怪物，行军速度提升")
+ARMY_FOOD_COST(64, "压缩干粮,兵营的维护费用降低"),
+,MARCH_MONSTER_SPEED(1925,"攻击攻击野怪、世界BOSS、大型怪物，行军速度提升")
+,AIR_ACTIVE_SKILL_MARCH_LIGHTNING(1928, "新飞机主动科技：下一次行军Xs到达目的地")
+    F_SOLDIER_ADD_SPEED(113, ""), //步兵造兵速度
+    R_SOLDIER_ADD_SPEED(114, ""), //骑兵造兵速度
+    B_SOLDIER_ADD_SPEED(115, ""), //弓兵造兵速度
+    C_SOLDIER_ADD_SPEED(116, ""), //车兵造兵速度
+MAKE_ARMY_SPEED(66, "部队训练速度"),//造兵速度
+    WOOD_OUTPUT(50, "提高木生产率"),	// UserResource.getOutPutEffect
+    STONE_OUTPUT(51, "提高石生产率"),
+    IRON_OUTPUT(52, "提高铁生产率"),
+    FOOD_OUTPUT(53, "提高粮生产率"),
+    FOOT_ARMY_TRAIN_RESOURCE_REDUCE(1837, "步兵兵训练消耗减少"),
+    RIDE_ARMY_TRAIN_RESOURCE_REDUCE(1838, "骑兵兵训练消耗减少"),
+    BOW_ARMY_TRAIN_RESOURCE_REDUCE(1839, "弓兵兵训练消耗减少"),
+    CAR_ARMY_TRAIN_RESOURCE_REDUCE(1840, "车兵训练消耗减少"),
+SCIENCE_RESEARCH(69, ""),//科技研究
+,MARCH_RETURN_EFFECT(1924, "回城加速")
+
+
+
+---
+空军装备, 鉴定, 组件等其他效果
+1. 只有飞机在家才生效的效果
+    ,IN_HOME_DEFEND_EFFECT(1903, "指挥部每驻守50000人，提高防守部队防御力力10%，最高200%") //  可配的数是50000
+    ,IN_HOME_ATTACK_EFFECT(1904, "指挥部每驻守50000人，提高防守部队攻击力20%，最高200%") //  可配的数是50000
+
+2. 跟随飞机生效的效果
+COLLECT_SPEED(65, "采集速度"),    // 采集速度，除了金矿
+,ALL_ARMY_WORLD_LOAD(1825,"全兵种负重加成")
+WORLD_LOAD(78, ""),
+,ALL_ARMY_ATTRIBUTES(1824,"全兵种攻防血")
+FOOT_ARMY_ATK_ADD1(1011, "剑术"),  //机甲攻击加成
+RIDE_ARMY_ATK_ADD1(1013, "骑术"),   // 飞行器 攻击加成
+BOW_ARMY_ATK_ADD1(1015, "箭术"),   //火箭炮手 攻击加成
+CAR_ARMY_ATK_ADD1(1017, "车术"),   // 远程炮 攻击加成
+ATK_ADD(1010, "部队攻击加成"),
+FOOT_ARMY_DEFENSE1(1031, "机甲 防御加成"),  //机甲 防御加成
+RIDE_ARMY_DEFENSE1(1033, "飞行器 防御加成"),  //飞行器 防御加成
+BOW_ARMY_DEFENSE1(1035, "火箭炮手 防御加成"),   //火箭炮手 防御加成
+CAR_ARMY_DEFENSE1(1037, "远程炮 防御加成"),   // 远程炮 防御加成
+DEFEND_ADD(1030, "部队防御加成"),
+FOOT_ARMY_LIFE1(1041, "机甲 血加成"),  //机甲 血加成
+RIDE_ARMY_LIFE1(1043, "飞行器 血加成"),  // 飞行器 血加成
+BOW_ARMY_LIFE1(1045, "火箭炮手 血加成"),  //火箭炮手 血加成
+CAR_ARMY_LIFE1(1047, "远程炮 血加成"),  //远程炮 血加成
+LIFE_ADD(1050, "部队血量加成"),
+TRAP_ATTACK_ADD(1692, "陷阱攻击力增加"),
+, TRAP_DAMAGE_REDUCE(1860, "陷阱抵抗")
+,ADD_MARCH_SPEED(1826," 增加行军速度")
+MARCH_SPEED_FIELD_MONSTER(59, "pve行军速度"),
+WOOD_COLLECT_SPEED(153, ""),
+    FOOD_COLLECT_SPEED(154, ""),
+    IRON_COLLECT_SPEED(155, ""),
+    STONE_COLLECT_SPEED(156, ""),
+
+3. 其他所有的效果, 都不管飞机在不在家都生效
+
+

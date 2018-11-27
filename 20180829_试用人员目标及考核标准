@@ -1,0 +1,18 @@
+试用人员目标及考核标准:
+  a.  编程规约掌握                                             标准提交程序符合编程规约要求，较少或没有规约问题
+  b.  没版本至少完成3个任务(难度水平: 新英雄开发(AMS-28408 【关键任务】【运营】9月新英雄德墨忒尔))                      标准: 上线后, 较少或者0bug
+  c.  能够独立完成一个中等难度开发任务(难度水平:AMS-28211【关键任务】【运营】每日福利)           标准: 上线后, 较少或者0bug
+  d.  完成一次技术分享                                     标准: 内容得到大家的认可
+
+
+
+
+-- InstantiationMode.SINGLE_INSTANCE 批量修改
+
+for file in `find .`; do sed -i 's/import com.smartfoxserver.v2.entities.data.ISFSObject;/import com.smartfoxserver.v2.entities.data.ISFSObject;\nimport java.util.Map;/' $file; done
+
+
+for file in `find . -type f`; do sed -i 's/public class.*extends AbstractClientRequestHandler/@Instantiation(value = InstantiationMode.SINGLE_INSTANCE)\n&/' $file; done;
+;
+
+for file in `find . -type f`; do if (grep 'InstantiationMode' $file) then sed -i 's/^package.*/&\n\n\nimport com.smartfoxserver.v2.annotations.Instantiation;\nimport com.smartfoxserver.v2.annotations.Instantiation.InstantiationMode;\n/' $file; done; 

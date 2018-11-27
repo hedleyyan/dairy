@@ -40,3 +40,8 @@ tail -f logs/smartfox.log  | grep 'remote repair'
 select * from worldpoint as W join 
 (select w.id,w.x,w.y,a.pointId,a.allianceId,a.level from worldpoint as w join alliance_territory as a on w.id=a.pointId where a.type=14 and a.pointId is not null) as X
  on W.x>=(X.x-6-X.level+1) and W.x<=(X.x+5+X.level-1) and W.y>=(X.y-6-X.level+1) and W.y<=(X.y+5+X.level-1);
+
+
+
+-- 大地图点属于不存在的司令部
+ select w.id,w.territoryId,a.pointId from worldpoint w left join alliance_territory a on w.territoryId=a.pointId where w.territoryId >0 and a.pointId is null;

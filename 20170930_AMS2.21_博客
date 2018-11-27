@@ -6,7 +6,10 @@
 
 for id in `redis-cli -n 5 zrange apl:$1 0 -1`; do
 	echo "#" $id;
-	echo "`redis-cli -n 2 hmget p:$id u l m`"
+	uid=`redis-cli -n 2 hmget p:$id u`;
+	echo "$uid";
+	echo "`redis-cli -n 4 hmget u:$uid s n l`";
+	echo "`redis-cli -n 2 hmget p:$id l m`"
 	echo
 	echo
 	echo
@@ -22,7 +25,7 @@ for id in `redis-cli -n 5 zrange cl:$1 0 -1`; do
 	uid=`redis-cli -n 3 hmget c:$id u`;
 	echo "$uid";
 	echo "`redis-cli -n 4 hmget u:$uid s n l`";
-	echo "`redis-cli -n 3 hmget c:$id m `";
+	echo "`redis-cli -n 3 hmget c:$id l m `";
 	echo
 done;
 

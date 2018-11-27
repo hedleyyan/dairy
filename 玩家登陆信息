@@ -9,10 +9,97 @@ grep 'init.*54-772365888000054' logs/smartfox.log.2017-10-19-02 | perl -lne 'pri
 grep 'init.*69-460027547000071' logs/smartfox.log.2017-11-04-0[67] | perl -lne 'print join "\t|\t", /(?:^[^|\t]+|(?:army":\[)[^]]+])/g' | perl -lne 'print join ",", /(?:^[^|\t]+|(?:"id":|"free":|"march":)[^,]+)/g' | sed -n 's/,\"march/\} \{\"march/g; s/\(.*\)/\1\}/;p' | perl -lne 'print join "\t|\t", /(?:^[^,]+|(?:{"march":(?!0))[^}]+}|(?:{[^{]*free":(?!0))[^}]+})/g' | sed -n 's/\(.*\)/\1\n/; s/|/\n/g;p' | perl -pe ' s/.*march":(\d+).*id":"(\d+)".*free":(\d+).*/\t$2, $1, $3/g;' | awk 'BEGIN{FS="\n"; RS="\n\n"; ORS="-------------------------------------\n\n"} { a=0; for(i=2;i<=NF;i++) {split($i,array,","); a+=array[2]+array[3]}; print $0"\n"a"\n";}'
 
 -- 坐标
-grep 'init.*18-478707162000021' logs/smartfox.log.2017-09-09-1* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"world":{)[^}]+})/g'
+grep 'init.*25-300892829000123' logs/smartfox.log.2018-01-19*  | perl -lne 'print join "\t|\t", /^[^|\t]+| \d+-\d+(?:-[\d.]+)? |"world":{.*}(?=,"userGenerals)/g'
+grep 'init.*64-609114263000079' logs/smartfox.log.2018-02-22*  | perl -lne 'print join "\t|\t", /^[^|\t]+| \d+-\d+(?:-[\d.]+)? |"world":{.*}(?=,"userGenerals)/g' | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"point)[^,]+,)/g'
 
 -- 背包物品
 grep 'LOCAL FINALLY .*"users":\["576076838000015"\]' logs/smartfox.log.2017-06-07* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:items)[^]]+])/g' | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:itemId":"(?:200020|210274|210096)",)[^,]+,)/g'
 
 
+
+
+-- user_state (status)
+grep 'init.*53-1407236130000065' logs/smartfox.log.2017-12-30-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"effectState")[^}]+})/g'
+
+-- user game effect（科技、士兵强化）
+grep 'init.*53-1407236130000065' logs/smartfox.log.2017-12-30-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"effect")[^}]+})/g'
+
+-- 国王官职 officer
+grep 'init.*53-74194903000053' logs/smartfox.log.2018-01-07-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"officer":")[^,"]+",)/g'
+
+-- 是否在联盟领地内
+grep '1407236130000065.*territory_positive_effect' logs/smartfox.log.2017-12-30-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:territory_positive_effect)[^,]+,)/g'
+grep 'push.territory.effect.*1407236130000065' logs/smartfox.log.2017-12-29-*
+
+-- vip
+grep 'init.*79-408205737000079' logs/smartfox.log.2018-01-10-03 | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"vip")[^}]+})/g'
+
+-- 联盟科技信息810100
+grep 'GetScienceInfo.*1060866466000069' logs/smartfox.log.2018-01-03-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:{[^{]*810100)[^}]+})/g'
+
+-- 世界BUFF worldEffect
+grep 'init.*25-300892829000123' logs/smartfox.log.2018-01-19*  logs/smartfox.log.2018-01-20-*| perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |"world":{.*}(?=,"userGenerals))/g'
+
+
+-- 英雄信息
+grep '03:01:11,215.*init.*1352744909000046' logs/smartfox.log.2018-03-02-03 |  perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"herolist").+?}])/g'
+
+-- 空军俄罗斯方块
+grep '03:01:11,215.*init.*1352744909000046' logs/smartfox.log.2018-03-02-03 |  perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"air_force_tetris")[^]]+])/g'
+
+-- 空军装备
+grep '03:01:11,215.*init.*1352744909000046' logs/smartfox.log.2018-03-02-03 |  perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"airForceEquips").+?(?=}])}])/g'
+
+-- 空军科技
+grep '2018-03-02 03:01:.*GetAirForceScienceInfo.*1352744909000046' logs/smartfox.log.2018-03-02-03 
+
+-- 英雄
+grep 'init.*31-391282019000018' logs/smartfox.log.2018-04-24-19 | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"herolist").+?}])/g'
+
+-- 登录buff细则
+grep '137744782000234.*"e_a"' logs/smartfox.log.2018-11-06-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"e_a").*?}]}])/g'
+"特定buff" -- 资源产量
+grep '137744782000234.*"e_a"' logs/smartfox.log.2018-11-05-* | perl -lne 'print join "\t|\t", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |(?:"e_a").*?}]}])/g'  | perl -lne 'print join ("\n", /(?:^[^|\t]+| \d+-\d+(?:-[\d.]+)? |"(?:50|51|52|53|1900|1850)".*?}]})/g), "\n"'
+
+
+gameEffect:
+vip + （vip）
+status +
+monthcard + (exchange.mxl -> 9007 -> effect 59，95，1739，1887）
+kingdomPositionEffect + (office.xml 登录下发 "officer")
+territoryEffect + （territory_effect.xml -> 65，50~53、38、122、1011、1013、1015、1017）
+worldEffect +
+robotEffect +  <ItemSpec id="502726" effect="1827;1200|1828;800|1829;1000|1168;1200" />
+robot2Effect + <ItemSpec id="502762" effect="66;20|1715;20|121;20|108;20" />
+airForceEquipEffect + (空军装备，跟飞机不绑定的)
+newAllianceScienceEffect + （alliance_science.xml）
+timeSpaceEffect + （item.xml -> time_space_door -> effects 目前只有 73）
+strongholdEffect + （配置 item.xml -> stronghold -> effects 目前只有 1011，1013，1015）
+buildingEffect + （building.xml -> para2 目前只有监狱，1010，1030，1050）
+heroSpecialzedSkill
+
+
+
+采集中队列：客户端 et = sdt + q / spd * 1000
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+采集负重相关
+effect: 78 相关配置
+air_force_equip.xml
+air_force_equip_identification.xml
+air_force_science.xml
+science_ams.xml
+
+1729
+arms_equip.xml
+
+1825
+air_force_equip.xml
+air_force_equip_tetris.xml
+
+官职3
+
+英雄另查
+
+空军科技另查（需要看但是带没带飞机）
 
